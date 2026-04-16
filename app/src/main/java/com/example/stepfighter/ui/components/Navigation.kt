@@ -14,12 +14,19 @@ import androidx.compose.material3.*
 import com.example.stepfighter.ui.profile.GoldColor
 import com.example.stepfighter.ui.profile.BgColor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.foundation.background
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.stepfighter.ui.dashboard.DashboardActivity
@@ -32,43 +39,53 @@ import com.example.stepfighter.ui.profile.TextGray
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopStepFighterBar() {
-    CenterAlignedTopAppBar(
-        title = {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    Icons.Default.Shield,
-                    contentDescription = null,
-                    tint = GoldColor,
-                    modifier = Modifier.size(20.dp)
+fun TopStepFighterBar(onMenuClick: () -> Unit = {}) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(
+                Brush.verticalGradient(
+                    colors = listOf(BgColor, BgColor.copy(alpha = 0.8f), Color.Transparent)
                 )
-                Spacer(Modifier.width(8.dp))
-                Text(
-                    "STEP FIGHTER",
-                    style = TextStyle(
-                        color = GoldColor,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = 2.sp,
-                        fontSize = 16.sp
+            )
+    ) {
+        CenterAlignedTopAppBar(
+            title = {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        Icons.Default.Shield,
+                        contentDescription = null,
+                        tint = GoldColor,
+                        modifier = Modifier.size(20.dp)
                     )
-                )
-            }
-        },
-        actions = {
-            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(end = 8.dp)) {
-                Text(
-                    "LEVEL 14",
-                    color = TextGray,
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                IconButton(onClick = {}) {
-                    Icon(Icons.Default.Menu, contentDescription = null, tint = TextGray)
+                    Spacer(Modifier.width(8.dp))
+                    Text(
+                        "STEP FIGHTER",
+                        style = TextStyle(
+                            color = GoldColor,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 2.sp,
+                            fontSize = 16.sp
+                        )
+                    )
                 }
-            }
-        },
-        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = BgColor)
-    )
+            },
+            actions = {
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(end = 8.dp)) {
+                    Text(
+                        "POZIOM 69",
+                        color = TextGray,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    IconButton(onClick = onMenuClick) {
+                        Icon(Icons.Default.Menu, contentDescription = null, tint = TextGray)
+                    }
+                }
+            },
+            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = Color.Transparent)
+        )
+    }
 }
 
 @Composable

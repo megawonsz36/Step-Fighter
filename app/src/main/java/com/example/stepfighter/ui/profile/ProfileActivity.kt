@@ -1,5 +1,6 @@
 package com.example.stepfighter.ui.profile
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,21 +14,27 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.stepfighter.ui.components.BottomNavigationBar
+import com.example.stepfighter.ui.components.SideMenuContent
 import com.example.stepfighter.ui.components.TopStepFighterBar
+import kotlinx.coroutines.launch
 
 // Definicja palety kolorów zgodnej z wzorcem
 val BgColor = Color(0xFF131313)
@@ -47,87 +54,109 @@ class ProfileActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StatystykiSpojnyProfil() {
-    Scaffold(
-        topBar = {
-            TopStepFighterBar()
-        },
-        bottomBar = {
-            BottomNavigationBar(selectedIndex = 2)
-        },
-        containerColor = BgColor
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(horizontal = 24.dp),
-            verticalArrangement = Arrangement.spacedBy(28.dp),
-            contentPadding = PaddingValues(top = 16.dp, bottom = 32.dp)
-        ) {
-            // --- SEKCJA KROKÓW ---
-            item {
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = "ŁĄCZNA LICZBA KROKÓW",
-                        color = TextGray,
-                        style = TextStyle(fontSize = 12.sp, letterSpacing = 3.sp)
-                    )
-                    Text(
-                        text = "142,850",
-                        color = AccentColor,
-                        style = TextStyle(
-                            fontSize = 58.sp,
-                            fontWeight = FontWeight.Black,
-                            letterSpacing = (-2).sp
-                        )
-                    )
-                    Text(
-                        text = "Legenda w drodze",
-                        color = GoldColor,
-                        fontStyle = FontStyle.Italic,
-                        style = TextStyle(fontSize = 16.sp)
-                    )
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
+
+    CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
+        ModalNavigationDrawer(
+            drawerState = drawerState,
+            drawerContent = {
+                CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+                    SideMenuContent(onClose = {
+                        scope.launch { drawerState.close() }
+                    })
                 }
-            }
+            },
+            gesturesEnabled = drawerState.isOpen
+        ) {
+            CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+                Scaffold(
+                    topBar = {
+                        TopStepFighterBar(onMenuClick = {
+                            scope.launch { drawerState.open() }
+                        })
+                    },
+                    bottomBar = {
+                        BottomNavigationBar(selectedIndex = 2)
+                    },
+                    containerColor = BgColor
+                ) { innerPadding ->
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
+                            .padding(horizontal = 24.dp),
+                        verticalArrangement = Arrangement.spacedBy(28.dp),
+                        contentPadding = PaddingValues(top = 16.dp, bottom = 32.dp)
+                    ) {
+                        // --- SEKCJA KROKÓW ---
+                        item {
+                            Column(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = "ŁĄCZNA LICZBA KROKÓW",
+                                    color = TextGray,
+                                    style = TextStyle(fontSize = 12.sp, letterSpacing = 3.sp)
+                                )
+                                Text(
+                                    text = "69",
+                                    color = AccentColor,
+                                    style = TextStyle(
+                                        fontSize = 58.sp,
+                                        fontWeight = FontWeight.Black,
+                                        letterSpacing = (-2).sp
+                                    )
+                                )
+                                Text(
+                                    text = "Legenda w drodze",
+                                    color = GoldColor,
+                                    fontStyle = FontStyle.Italic,
+                                    style = TextStyle(fontSize = 16.sp)
+                                )
+                            }
+                        }
 
-            // --- SEKCJA ATRYBUTÓW ---
-            item {
-                AttributesBox()
-            }
+                        // --- SEKCJA ATRYBUTÓW ---
+                        item {
+                            AttributesBox()
+                        }
 
-            // --- SEKCJA MAPY POSTĘPU ---
-            item {
-                SectionTitle("MAPA POSTĘPU TYGODNIOWEGO")
-                WeeklyProgressChart()
-            }
+                        // --- SEKCJA MAPY POSTĘPU ---
+                        item {
+                            SectionTitle("MAPA POSTĘPU TYGODNIOWEGO")
+                            WeeklyProgressChart()
+                        }
 
-            // --- SEKCJA ZASŁUG ---
-            item {
-                SectionTitle("ZASŁUGI WOJENNE")
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
-                ) {
-                    AchievementCard(
-                        title = "Pogromca Ścieżek",
-                        desc = "1000 kroków w tydzień",
-                        icon = Icons.Default.EmojiEvents,
-                        isActive = true,
-                        modifier = Modifier.weight(1f)
-                    )
-                    AchievementCard(
-                        title = "Władca Szczytów",
-                        desc = "Zablokowane",
-                        icon = Icons.Default.Lock,
-                        isActive = false,
-                        modifier = Modifier.weight(1f)
-                    )
+                        // --- SEKCJA ZASŁUG ---
+                        item {
+                            SectionTitle("ZASŁUGI WOJENNE")
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                            ) {
+                                AchievementCard(
+                                    title = "Pogromca Ścieżek",
+                                    desc = "69 kroków w tydzień",
+                                    icon = Icons.Default.EmojiEvents,
+                                    isActive = true,
+                                    modifier = Modifier.weight(1f)
+                                )
+                                AchievementCard(
+                                    title = "Władca Szczytów",
+                                    desc = "Zablokowane",
+                                    icon = Icons.Default.Lock,
+                                    isActive = false,
+                                    modifier = Modifier.weight(1f)
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -178,10 +207,10 @@ fun AttributesBox() {
             )
             Spacer(Modifier.height(24.dp))
             
-            AttributeRow("SIŁA", "74", "+2", Icons.Default.FitnessCenter)
-            AttributeRow("ZRĘCZNOŚĆ", "91", "+5", Icons.Default.Speed)
-            AttributeRow("INTELIGENCJA", "45", "", Icons.Default.MenuBook)
-            AttributeRow("WITALNOŚĆ", "88", "-3", Icons.Default.Favorite)
+            AttributeRow("SIŁA", "69", "+69", Icons.Default.FitnessCenter)
+            AttributeRow("ZRĘCZNOŚĆ", "69", "+69", Icons.Default.Speed)
+            AttributeRow("INTELIGENCJA", "69", "", Icons.Default.MenuBook)
+            AttributeRow("WITALNOŚĆ", "69", "-69", Icons.Default.Favorite)
         }
     }
 }
@@ -249,7 +278,7 @@ fun WeeklyProgressChart() {
             verticalAlignment = Alignment.Bottom
         ) {
             val days = listOf("PON", "WT", "ŚR", "CZW", "PT", "SOB", "ND")
-            val values = listOf(0.3f, 0.5f, 0.8f, 0.4f, 0.6f, 1f, 0.2f)
+            val values = listOf(0.69f, 0.69f, 0.69f, 0.69f, 0.69f, 0.69f, 0.69f)
             
             days.forEachIndexed { index, day ->
                 val isSelected = day == "SOB"
