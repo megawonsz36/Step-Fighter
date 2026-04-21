@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.foundation.Image
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.zIndex
 import com.example.stepfighter.R
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
