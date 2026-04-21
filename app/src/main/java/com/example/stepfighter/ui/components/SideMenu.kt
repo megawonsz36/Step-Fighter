@@ -1,11 +1,13 @@
 package com.example.stepfighter.ui.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Logout
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.AutoStories
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.EmojiEvents
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,13 +17,18 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.example.stepfighter.R
 import com.example.stepfighter.ui.profile.BgColor
-import com.example.stepfighter.ui.profile.CardBg
 import com.example.stepfighter.ui.profile.GoldColor
 import com.example.stepfighter.ui.profile.TextGray
+import android.content.Intent
+import androidx.compose.ui.platform.LocalContext
+import com.example.stepfighter.ui.settings.SettingsActivity
 
 @Composable
 fun SideMenuContent(onClose: () -> Unit) {
+    val context = LocalContext.current
     ModalDrawerSheet(
         drawerContainerColor = BgColor,
         drawerShape = androidx.compose.foundation.shape.RoundedCornerShape(topStart = 16.dp, bottomStart = 16.dp),
@@ -39,14 +46,14 @@ fun SideMenuContent(onClose: () -> Unit) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    "MENU",
+                    stringResource(R.string.menu_title),
                     color = GoldColor,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Black,
                     letterSpacing = 2.sp
                 )
                 IconButton(onClick = onClose) {
-                    Icon(Icons.Default.Close, contentDescription = "Zamknij", tint = GoldColor)
+                    Icon(Icons.Default.Close, contentDescription = null, tint = GoldColor)
                 }
             }
 
@@ -57,12 +64,12 @@ fun SideMenuContent(onClose: () -> Unit) {
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 item {
-                    SideMenuItem("RANKINGI", Icons.Default.EmojiEvents) {
+                    SideMenuItem(stringResource(R.string.menu_rankings), Icons.Default.EmojiEvents) {
                         onClose()
                     }
                 }
                 item {
-                    SideMenuItem("KSIĘGA ZADAŃ", Icons.Default.AutoStories) {
+                    SideMenuItem(stringResource(R.string.menu_quest_book), Icons.Default.AutoStories) {
                         onClose()
                     }
                 }
@@ -73,12 +80,15 @@ fun SideMenuContent(onClose: () -> Unit) {
                     )
                 }
                 item {
-                    SideMenuItem("USTAWIENIA", Icons.Default.Settings) {
+                    SideMenuItem(stringResource(R.string.menu_settings), Icons.Default.Settings) {
+                        val intent = Intent(context, SettingsActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        context.startActivity(intent)
                         onClose()
                     }
                 }
                 item {
-                    SideMenuItem("WYLOGUJ", Icons.AutoMirrored.Filled.Logout, color = Color(0xFFB94A4A)) {
+                    SideMenuItem(stringResource(R.string.menu_logout), Icons.AutoMirrored.Filled.Logout, color = Color(0xFFB94A4A)) {
                         onClose()
                     }
                 }

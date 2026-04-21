@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -31,6 +32,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.example.stepfighter.R
 import com.example.stepfighter.ui.components.BottomNavigationBar
 import com.example.stepfighter.ui.components.SideMenuContent
 import com.example.stepfighter.ui.components.TopStepFighterBar
@@ -100,7 +103,7 @@ fun StatystykiSpojnyProfil() {
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 Text(
-                                    text = "ŁĄCZNA LICZBA KROKÓW",
+                                    text = stringResource(R.string.total_steps_label),
                                     color = TextGray,
                                     style = TextStyle(fontSize = 12.sp, letterSpacing = 3.sp)
                                 )
@@ -114,7 +117,7 @@ fun StatystykiSpojnyProfil() {
                                     )
                                 )
                                 Text(
-                                    text = "Legenda w drodze",
+                                    text = stringResource(R.string.warrior_rank),
                                     color = GoldColor,
                                     fontStyle = FontStyle.Italic,
                                     style = TextStyle(fontSize = 16.sp)
@@ -129,27 +132,27 @@ fun StatystykiSpojnyProfil() {
 
                         // --- SEKCJA MAPY POSTĘPU ---
                         item {
-                            SectionTitle("MAPA POSTĘPU TYGODNIOWEGO")
+                            SectionTitle(stringResource(R.string.weekly_progress_title))
                             WeeklyProgressChart()
                         }
 
                         // --- SEKCJA ZASŁUG ---
                         item {
-                            SectionTitle("ZASŁUGI WOJENNE")
+                            SectionTitle(stringResource(R.string.war_achievements))
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.spacedBy(16.dp)
                             ) {
                                 AchievementCard(
-                                    title = "Pogromca Ścieżek",
-                                    desc = "69 kroków w tydzień",
+                                    title = stringResource(R.string.ach_path_slayer),
+                                    desc = stringResource(R.string.ach_path_slayer_desc, 69),
                                     icon = Icons.Default.EmojiEvents,
                                     isActive = true,
                                     modifier = Modifier.weight(1f)
                                 )
                                 AchievementCard(
-                                    title = "Władca Szczytów",
-                                    desc = "Zablokowane",
+                                    title = stringResource(R.string.ach_peak_lord),
+                                    desc = stringResource(R.string.locked),
                                     icon = Icons.Default.Lock,
                                     isActive = false,
                                     modifier = Modifier.weight(1f)
@@ -201,16 +204,16 @@ fun AttributesBox() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                "ATRYBUTY WOJOWNIKA",
+                stringResource(R.string.attributes_title),
                 color = AttributeText,
                 style = TextStyle(fontWeight = FontWeight.Bold, letterSpacing = 1.5.sp, fontSize = 14.sp)
             )
             Spacer(Modifier.height(24.dp))
             
-            AttributeRow("SIŁA", "69", "+69", Icons.Default.FitnessCenter)
-            AttributeRow("ZRĘCZNOŚĆ", "69", "+69", Icons.Default.Speed)
-            AttributeRow("INTELIGENCJA", "69", "", Icons.Default.MenuBook)
-            AttributeRow("WITALNOŚĆ", "69", "-69", Icons.Default.Favorite)
+            AttributeRow(stringResource(R.string.attr_strength), "69", "+69", Icons.Default.FitnessCenter)
+            AttributeRow(stringResource(R.string.attr_dexterity), "69", "+69", Icons.Default.Speed)
+            AttributeRow(stringResource(R.string.attr_intelligence), "69", "", Icons.AutoMirrored.Filled.MenuBook)
+            AttributeRow(stringResource(R.string.attr_vitality), "69", "-69", Icons.Default.Favorite)
         }
     }
 }
@@ -277,11 +280,20 @@ fun WeeklyProgressChart() {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom
         ) {
-            val days = listOf("PON", "WT", "ŚR", "CZW", "PT", "SOB", "ND")
+            val days = listOf(
+                stringResource(R.string.day_mon),
+                stringResource(R.string.day_tue),
+                stringResource(R.string.day_wed),
+                stringResource(R.string.day_thu),
+                stringResource(R.string.day_fri),
+                stringResource(R.string.day_sat),
+                stringResource(R.string.day_sun)
+            )
             val values = listOf(0.69f, 0.69f, 0.69f, 0.69f, 0.69f, 0.69f, 0.69f)
-            
+            val satLabel = stringResource(R.string.day_sat)
+
             days.forEachIndexed { index, day ->
-                val isSelected = day == "SOB"
+                val isSelected = day == satLabel
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Box(
                         modifier = Modifier

@@ -1,3 +1,106 @@
 <resources>
     <string name="app_name">Step Fighter</string>
+    <string name="level_label">POZIOM %1$d</string>
+    <string name="warrior_title">Wojownik Ścieżek</string>
+    <string name="energy_progress_title">POSTĘP ENERGII</string>
+    <string name="steps_count">%1$d / %2$d Kroków</string>
+    <string name="energy_missing_desc">Brakuje ci %1$d kroków do pełnego naładowania.\nNastępny poziom.</string>
+    <string name="no_enemies">BRAK PRZECIWNIKÓW</string>
+    <string name="no_enemies_desc">Poruszaj się aby jakichś namierzyć</string>
+    <string name="fight_btn">WALCZ</string>
+    <string name="save_progress">ZAPISZ POSTĘP</string>
+    <string name="login_google">Zaloguj przez Google</string>
+    <string name="recent_finds">OSTATNIE ZNALEZISKA</string>
+    <string name="find_medallion_title">Medalion Wytrwałości</string>
+    <string name="find_medallion_desc">-%1$d%% do regeneracji energii z kroków</string>
+    <string name="find_boots_title">Buty Siedmiomilowe</string>
+    <string name="find_boots_desc">Zaliczono %1$d kroków w tym tygodniu</string>
+
+    <!-- Profile -->
+    <string name="total_steps_label">ŁĄCZNA LICZBA KROKÓW</string>
+    <string name="warrior_rank">Legenda w drodze</string>
+    <string name="attributes_title">ATRYBUTY WOJOWNIKA</string>
+    <string name="attr_strength">SIŁA</string>
+    <string name="attr_dexterity">ZRĘCZNOŚĆ</string>
+    <string name="attr_intelligence">INTELIGENCJA</string>
+    <string name="attr_vitality">WITALNOŚĆ</string>
+    <string name="weekly_progress_title">MAPA POSTĘPU TYGODNIOWEGO</string>
+    <string name="war_achievements">ZASŁUGI WOJENNE</string>
+    <string name="ach_path_slayer">Pogromca Ścieżek</string>
+    <string name="ach_path_slayer_desc">%1$d kroków w tydzień</string>
+    <string name="ach_peak_lord">Władca Szczytów</string>
+    <string name="locked">Zablokowane</string>
+
+    <!-- Days -->
+    <string name="day_mon">PON</string>
+    <string name="day_tue">WT</string>
+    <string name="day_wed">ŚR</string>
+    <string name="day_thu">CZW</string>
+    <string name="day_fri">PT</string>
+    <string name="day_sat">SOB</string>
+    <string name="day_sun">ND</string>
+
+    <!-- Dungeon -->
+    <string name="enemy_name">PRZEKLĘTY STRAŻNIK</string>
+    <string name="hp_label">%1$d / %2$d HP</string>
+    <string name="your_health">TWOJE ZDROWIE</string>
+    <string name="available_steps">DOSTĘPNE KROKI</string>
+    <string name="action_strike">UDERZ</string>
+    <string name="action_strike_desc">Zadaj %1$d obrażeń</string>
+    <string name="action_dodge">UNIK</string>
+    <string name="combat_log_title">KRONIKA WALKI</string>
+    <string name="cost_label">KOSZT: %1$d KROKÓW</string>
+    <string name="combat_log_start">Zaczynasz pojedynek z Strażnikiem&#8230;</string>
+    <string name="combat_log_player_hit">Ty: Uderzasz za %1$d obrażeń.</string>
+    <string name="combat_log_enemy_action">Strażnik: Wykonuje potężny zamach!</string>
+    <string name="combat_log_player_loss">Tracisz %1$d HP.</string>
+
+    <!-- Inventory -->
+    <string name="inventory_title">EKWIPUNEK</string>
+    <string name="inventory_desc">Zarządzaj swoim rynsztunkiem i magicznymi artefaktami</string>
+    <string name="slot_head">GŁOWA</string>
+    <string name="slot_right_hand">PRAWA RĘKA</string>
+    <string name="slot_torso">TORS</string>
+    <string name="slot_left_hand">LEWA RĘKA</string>
+    <string name="slot_feet">STOPY</string>
+    <string name="stat_attack">ATAK</string>
+    <string name="stat_defense">OBRONA</string>
+    <string name="stat_agility">ZWINNOŚĆ</string>
+    <string name="use_item">UŻYJ PRZEDMIOTU</string>
+    <string name="drop_item">WYRZUĆ</string>
+    <string name="item_name_sword">MIECZ ZWINNOŚCI</string>
+    <string name="item_rarity_rare">RZADKI</string>
+    <string name="item_desc_sword">\"Wykuty w sercu burzy, lżejszy od pióra, ostrzejszy od spojrzenia sokoła.\"</string>
+    <string name="item_stat_attack_bonus">Atak:</string>
+    <string name="item_stat_agility_bonus">Zwinność:</string>
+    <string name="item_req_level">Wymagany Poziom: %1$d</string>
+    <string name="item_value">Wartość: %1$d złota</string>
+
+    <!-- Navigation -->
+    <string name="nav_dungeons">Lochy</string>
+    <string name="nav_inventory">Ekwipunek</string>
+    <string name="nav_profile">Statystyki</string>
+    <string name="top_level">POZIOM %1$d</string>
+
+    <!-- Side Menu -->
+    <string name="menu_title">MENU</string>
+    <string name="menu_rankings">RANKINGI</string>
+    <string name="menu_quest_book">KSIĘGA ZADAŃ</string>
+    <string name="menu_settings">USTAWIENIA</string>
+    <string name="menu_logout">WYLOGUJ</string>
+
+    <!-- Settings -->
+    <string name="settings_title">USTAWIENIA</string>
+    <string name="settings_desc">Dostosuj swój rynsztunek systemowy</string>
+    <string name="settings_general">OGÓLNE</string>
+    <string name="settings_notifications">POWIADOMIENIA</string>
+    <string name="settings_language">JĘZYK</string>
+    <string name="settings_help">POMOC</string>
+    <string name="settings_language_select">WYBÓR JĘZYKA</string>
+    <string name="lang_pl">Polski</string>
+    <string name="lang_en">English</string>
+    <string name="settings_notification_steps">Powiadomienia o krokach</string>
+    <string name="settings_notification_energy">Pełna energia</string>
+    <string name="settings_sound_effects">Efekty dźwiękowe</string>
+    <string name="settings_version">Wersja 1.0.0 - Alpha</string>
 </resources>

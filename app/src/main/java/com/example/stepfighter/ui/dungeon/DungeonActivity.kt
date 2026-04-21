@@ -11,7 +11,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.automirrored.filled.DirectionsRun
+import androidx.compose.material.icons.filled.AccessibilityNew
+import androidx.compose.material.icons.filled.FlashOn
+import androidx.compose.material.icons.filled.ViewInAr
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -35,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
 import com.example.stepfighter.ui.components.BottomNavigationBar
 import com.example.stepfighter.ui.components.SideMenuContent
 import com.example.stepfighter.ui.components.TopStepFighterBar
@@ -97,12 +101,12 @@ fun DungeonScreen() {
                                     verticalAlignment = Alignment.Bottom
                                 ) {
                                     Text(
-                                        "PRZEKLĘTY STRAŻNIK",
+                                        stringResource(R.string.enemy_name),
                                         color = GoldColor,
                                         style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 14.sp, letterSpacing = 1.sp)
                                     )
                                     Text(
-                                        "69 / 69 HP",
+                                        stringResource(R.string.hp_label, 69, 69),
                                         color = TextGray,
                                         style = TextStyle(fontSize = 11.sp, fontWeight = FontWeight.Bold)
                                     )
@@ -178,13 +182,13 @@ fun DungeonScreen() {
                                         .padding(12.dp),
                                     horizontalAlignment = Alignment.CenterHorizontally
                                 ) {
-                                    Text("TWOJE ZDROWIE", color = TextGray, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                    Text(stringResource(R.string.your_health), color = TextGray, fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                     Spacer(Modifier.height(8.dp))
                                     Box(modifier = Modifier.fillMaxWidth().height(4.dp).background(Color.Black, RoundedCornerShape(2.dp))) {
                                         Box(modifier = Modifier.fillMaxWidth(0.69f).fillMaxHeight().background(GoldColor, RoundedCornerShape(2.dp)))
                                     }
                                     Spacer(Modifier.height(8.dp))
-                                    Text("69 / 69", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Black)
+                                    Text(stringResource(R.string.hp_label, 69, 69).replace(" HP", ""), color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Black)
                                 }
                                 // Dostępne Kroki
                                 Column(
@@ -195,10 +199,10 @@ fun DungeonScreen() {
                                         .padding(12.dp),
                                     horizontalAlignment = Alignment.CenterHorizontally
                                 ) {
-                                    Text("DOSTĘPNE KROKI", color = TextGray, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                                    Text(stringResource(R.string.available_steps), color = TextGray, fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                     Spacer(Modifier.height(8.dp))
                                     Row(verticalAlignment = Alignment.CenterVertically) {
-                                        Icon(Icons.Default.DirectionsRun, null, tint = AccentColor, modifier = Modifier.size(16.dp))
+                                        Icon(Icons.AutoMirrored.Filled.DirectionsRun, null, tint = AccentColor, modifier = Modifier.size(16.dp))
                                         Text(" 69", color = AccentColor, fontSize = 18.sp, fontWeight = FontWeight.Black)
                                     }
                                 }
@@ -222,8 +226,8 @@ fun DungeonScreen() {
                                         Icon(Icons.Default.FlashOn, null, tint = BgColor, modifier = Modifier.size(28.dp))
                                         Spacer(Modifier.width(12.dp))
                                         Column {
-                                            Text("UDERZ", color = BgColor, fontWeight = FontWeight.Black, fontSize = 18.sp)
-                                            Text("Zadaj 69 obrażeń", color = BgColor.copy(alpha = 0.7f), fontSize = 11.sp)
+                                            Text(stringResource(R.string.action_strike), color = BgColor, fontWeight = FontWeight.Black, fontSize = 18.sp)
+                                            Text(stringResource(R.string.action_strike_desc, 69), color = BgColor.copy(alpha = 0.7f), fontSize = 11.sp)
                                         }
                                     }
                                     Surface(
@@ -231,7 +235,7 @@ fun DungeonScreen() {
                                         shape = RoundedCornerShape(2.dp)
                                     ) {
                                         Text(
-                                            "KOSZT: 69 KROKÓW",
+                                            stringResource(R.string.cost_label, 69),
                                             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                                             color = BgColor,
                                             fontSize = 9.sp,
@@ -253,7 +257,7 @@ fun DungeonScreen() {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Icon(Icons.Default.AccessibilityNew, null, tint = TextGray, modifier = Modifier.size(20.dp))
                                     Spacer(Modifier.width(8.dp))
-                                    Text("UNIK", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp, letterSpacing = 2.sp)
+                                    Text(stringResource(R.string.action_dodge), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp, letterSpacing = 2.sp)
                                 }
                             }
                         }
@@ -274,7 +278,7 @@ fun DungeonScreen() {
                                         .padding(20.dp)
                                 ) {
                                     Text(
-                                        "KRONIKA WALKI",
+                                        stringResource(R.string.combat_log_title),
                                         color = AttributeText,
                                         style = TextStyle(fontWeight = FontWeight.Bold, letterSpacing = 1.sp, fontSize = 13.sp)
                                     )
@@ -282,12 +286,12 @@ fun DungeonScreen() {
                                     HorizontalDivider(color = AttributeText.copy(alpha = 0.1f))
                                     Spacer(Modifier.height(12.dp))
                                     
-                                    Text("Zaczynasz pojedynek z Strażnikiem...", color = AttributeText.copy(alpha = 0.6f), fontStyle = FontStyle.Italic, fontSize = 12.sp)
+                                    Text(stringResource(R.string.combat_log_start), color = AttributeText.copy(alpha = 0.6f), fontStyle = FontStyle.Italic, fontSize = 12.sp)
                                     Spacer(Modifier.height(8.dp))
-                                    Text("Ty: Uderzasz za 69 obrażeń.", color = AttributeText, fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                                    Text(stringResource(R.string.combat_log_player_hit, 69), color = AttributeText, fontWeight = FontWeight.Bold, fontSize = 13.sp)
                                     Spacer(Modifier.height(8.dp))
-                                    Text("Strażnik: Wykonuje potężny zamach!", color = AttributeText, fontSize = 13.sp)
-                                    Text("Tracisz 69 HP.", color = Color(0xFF8B0000), fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                                    Text(stringResource(R.string.combat_log_enemy_action), color = AttributeText, fontSize = 13.sp)
+                                    Text(stringResource(R.string.combat_log_player_loss, 69), color = Color(0xFF8B0000), fontWeight = FontWeight.Bold, fontSize = 13.sp)
                                 }
                             }
                         }

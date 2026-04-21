@@ -14,7 +14,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.automirrored.filled.DirectionsWalk
+import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.CloudUpload
+import androidx.compose.material.icons.filled.FlashOn
+import androidx.compose.material.icons.filled.MilitaryTech
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -25,6 +29,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -118,12 +123,12 @@ fun DashboardScreen() {
                                             .padding(bottom = 16.dp)
                                     ) {
                                         Text(
-                                            "POZIOM 69",
+                                            stringResource(R.string.level_label, 69),
                                             color = GoldColor,
                                             style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 14.sp, letterSpacing = 2.sp)
                                         )
                                         Text(
-                                            "Wojownik Ścieżek",
+                                            stringResource(R.string.warrior_title),
                                             color = Color.White,
                                             style = TextStyle(fontWeight = FontWeight.Black, fontSize = 32.sp)
                                         )
@@ -148,8 +153,8 @@ fun DashboardScreen() {
                                             verticalAlignment = Alignment.CenterVertically
                                         ) {
                                             Column {
-                                                Text("POSTĘP ENERGII", color = TextGray, fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
-                                                Text("69 / 69 Kroków", color = Color.White, fontSize = 16.sp, fontStyle = androidx.compose.ui.text.font.FontStyle.Italic)
+                                                Text(stringResource(R.string.energy_progress_title), color = TextGray, fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
+                                                Text(stringResource(R.string.steps_count, 69, 69), color = Color.White, fontSize = 16.sp, fontStyle = androidx.compose.ui.text.font.FontStyle.Italic)
                                             }
                                             Icon(Icons.Default.FlashOn, null, tint = GoldColor, modifier = Modifier.size(24.dp))
                                         }
@@ -164,7 +169,7 @@ fun DashboardScreen() {
                                         }
                                         Spacer(Modifier.height(12.dp))
                                         Text(
-                                            "Brakuje ci 69 kroków do pełnego naładowania.\nNastępny poziom.",
+                                            stringResource(R.string.energy_missing_desc, 69),
                                             color = TextGray,
                                             fontSize = 11.sp,
                                             fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
@@ -186,14 +191,15 @@ fun DashboardScreen() {
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                        Text("BRAK PRZECIWNIKÓW", color = GoldColor, fontWeight = FontWeight.Black, fontSize = 18.sp, letterSpacing = 1.sp)
-                                        Text("Poruszaj się aby jakichś namierzyć", color = TextGray, fontSize = 12.sp, fontStyle = androidx.compose.ui.text.font.FontStyle.Italic)
+                                        Text(stringResource(R.string.no_enemies), color = GoldColor, fontWeight = FontWeight.Black, fontSize = 18.sp, letterSpacing = 1.sp)
+                                        Text(stringResource(R.string.no_enemies_desc), color = TextGray, fontSize = 12.sp, fontStyle = androidx.compose.ui.text.font.FontStyle.Italic)
                                         Spacer(Modifier.height(16.dp))
                                         Button(
                                             onClick = {
                                                 val intent = Intent(context, DungeonActivity::class.java)
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                                                 context.startActivity(intent)
+                                                @Suppress("DEPRECATION")
                                                 (context as Activity).overridePendingTransition(0, 0)
                                             },
                                             colors = ButtonDefaults.buttonColors(containerColor = GoldColor.copy(alpha = 0.1f)),
@@ -201,7 +207,7 @@ fun DashboardScreen() {
                                             shape = RoundedCornerShape(4.dp),
                                             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 8.dp)
                                         ) {
-                                            Text("WALCZ", color = GoldColor, fontWeight = FontWeight.Bold)
+                                            Text(stringResource(R.string.fight_btn), color = GoldColor, fontWeight = FontWeight.Bold)
                                         }
                                     }
                                 }
@@ -218,8 +224,8 @@ fun DashboardScreen() {
                                     }
                                     Spacer(Modifier.width(16.dp))
                                     Column(modifier = Modifier.weight(1f)) {
-                                        Text("ZAPISZ POSTĘP", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 14.sp)
-                                        Text("Zaloguj przez Google", color = TextGray, fontSize = 11.sp)
+                                        Text(stringResource(R.string.save_progress), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                        Text(stringResource(R.string.login_google), color = TextGray, fontSize = 11.sp)
                                     }
                                     Icon(Icons.Default.ChevronRight, null, tint = TextGray)
                                 }
@@ -228,10 +234,10 @@ fun DashboardScreen() {
                             // --- OSTATNIE ZNALEZISKA ---
                             item {
                                 Column(modifier = Modifier.fillMaxWidth().padding(24.dp)) {
-                                    Text("OSTATNIE ZNALEZISKA", color = TextGray, fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp, modifier = Modifier.padding(bottom = 16.dp))
-                                    FindItem("Medalion Wytrwałości", "-69% do regeneracji energii z kroków", Icons.Default.MilitaryTech)
+                                    Text(stringResource(R.string.recent_finds), color = TextGray, fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp, modifier = Modifier.padding(bottom = 16.dp))
+                                    FindItem(stringResource(R.string.find_medallion_title), stringResource(R.string.find_medallion_desc, 69), Icons.Default.MilitaryTech)
                                     Spacer(Modifier.height(12.dp))
-                                    FindItem("Buty Siedmiomilowe", "Zaliczono 69 kroków w tym tygodniu", Icons.Default.DirectionsWalk)
+                                    FindItem(stringResource(R.string.find_boots_title), stringResource(R.string.find_boots_desc, 69), Icons.AutoMirrored.Filled.DirectionsWalk)
                                 }
                             }
                             item { Spacer(Modifier.height(20.dp)) }

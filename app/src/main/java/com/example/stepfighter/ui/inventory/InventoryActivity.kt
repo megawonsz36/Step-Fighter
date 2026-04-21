@@ -29,6 +29,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import com.example.stepfighter.R
 import com.example.stepfighter.ui.components.BottomNavigationBar
 import com.example.stepfighter.ui.components.SideMenuContent
 import com.example.stepfighter.ui.components.TopStepFighterBar
@@ -86,8 +88,8 @@ fun InventoryScreen() {
                     ) {
                         item {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text("EKWIPUNEK", color = GoldColor, style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Black, letterSpacing = 2.sp))
-                                Text("Zarządzaj swoim rynsztunkiem i magicznymi artefaktami", color = TextGray, fontSize = 11.sp)
+                                Text(stringResource(R.string.inventory_title), color = GoldColor, style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Black, letterSpacing = 2.sp))
+                                Text(stringResource(R.string.inventory_desc), color = TextGray, fontSize = 11.sp)
                             }
                         }
 
@@ -99,21 +101,21 @@ fun InventoryScreen() {
                                     .padding(24.dp)
                             ) {
                                 Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
-                                    EquipmentSlot("GŁOWA", Icons.Default.Face, isSmall = true)
+                                    EquipmentSlot(stringResource(R.string.slot_head), Icons.Default.Face, isSmall = true)
                                     Spacer(Modifier.height(16.dp))
                                     Row(horizontalArrangement = Arrangement.spacedBy(16.dp), verticalAlignment = Alignment.CenterVertically) {
-                                        EquipmentSlot("PRAWA RĘKA", Icons.Default.HorizontalRule, hasItem = true, isSelected = true)
-                                        EquipmentSlot("TORS", Icons.Default.Checkroom, hasItem = true)
-                                        EquipmentSlot("LEWA RĘKA", Icons.Default.Shield)
+                                        EquipmentSlot(stringResource(R.string.slot_right_hand), Icons.Default.HorizontalRule, hasItem = true, isSelected = true)
+                                        EquipmentSlot(stringResource(R.string.slot_torso), Icons.Default.Checkroom, hasItem = true)
+                                        EquipmentSlot(stringResource(R.string.slot_left_hand), Icons.Default.Shield)
                                     }
                                     Spacer(Modifier.height(16.dp))
-                                    EquipmentSlot("STOPY", Icons.Default.IceSkating, isSmall = true)
+                                    EquipmentSlot(stringResource(R.string.slot_feet), Icons.Default.IceSkating, isSmall = true)
 
                                     Spacer(Modifier.height(24.dp))
                                     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-                                        StatItem("69", "ATAK")
-                                        StatItem("69", "OBRONA")
-                                        StatItem("69", "ZWINNOŚĆ")
+                                        StatItem("69", stringResource(R.string.stat_attack))
+                                        StatItem("69", stringResource(R.string.stat_defense))
+                                        StatItem("69", stringResource(R.string.stat_agility))
                                     }
                                 }
                             }
@@ -135,7 +137,7 @@ fun InventoryScreen() {
                                     colors = ButtonDefaults.buttonColors(containerColor = AccentColor),
                                     shape = RoundedCornerShape(4.dp)
                                 ) {
-                                    Text("UŻYJ PRZEDMIOTU", color = BgColor, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                                    Text(stringResource(R.string.use_item), color = BgColor, fontWeight = FontWeight.Bold, fontSize = 12.sp)
                                 }
                                 OutlinedButton(
                                     onClick = {},
@@ -143,7 +145,7 @@ fun InventoryScreen() {
                                     border = BorderStroke(1.dp, Color.White.copy(alpha = 0.2f)),
                                     shape = RoundedCornerShape(4.dp)
                                 ) {
-                                    Text("WYRZUĆ", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                                    Text(stringResource(R.string.drop_item), color = Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp)
                                 }
                             }
                         }
@@ -252,13 +254,13 @@ fun ItemDetailsBox() {
     ) {
         Column {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                Text("MIECZ ZWINNOŚCI", color = AttributeText, fontWeight = FontWeight.Black, fontSize = 18.sp)
+                Text(stringResource(R.string.item_name_sword), color = AttributeText, fontWeight = FontWeight.Black, fontSize = 18.sp)
                 Surface(color = AttributeText.copy(alpha = 0.1f), shape = RoundedCornerShape(2.dp), border = BorderStroke(1.dp, AttributeText.copy(alpha = 0.2f))) {
-                    Text("RZADKI", color = AttributeText, fontSize = 9.sp, modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp), fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.item_rarity_rare), color = AttributeText, fontSize = 9.sp, modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp), fontWeight = FontWeight.Bold)
                 }
             }
             Text(
-                "\"Wykuty w sercu burzy, lżejszy od pióra, ostrzejszy od spojrzenia sokoła.\"",
+                stringResource(R.string.item_desc_sword),
                 color = AttributeText.copy(alpha = 0.8f),
                 fontStyle = FontStyle.Italic,
                 fontSize = 12.sp,
@@ -266,17 +268,17 @@ fun ItemDetailsBox() {
                 modifier = Modifier.padding(vertical = 8.dp)
             )
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                Text("Atak:", color = AttributeText, fontSize = 13.sp)
+                Text(stringResource(R.string.item_stat_attack_bonus), color = AttributeText, fontSize = 13.sp)
                 Text("+69", color = AttributeText, fontWeight = FontWeight.Bold, fontSize = 13.sp)
             }
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                Text("Zwinność:", color = AttributeText, fontSize = 13.sp)
+                Text(stringResource(R.string.item_stat_agility_bonus), color = AttributeText, fontSize = 13.sp)
                 Text("+69", color = AttributeText, fontWeight = FontWeight.Bold, fontSize = 13.sp)
             }
             Spacer(Modifier.height(12.dp))
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                Text("Wymagany Poziom: 69", color = AttributeText.copy(alpha = 0.5f), fontSize = 10.sp)
-                Text("Wartość: 69 złota", color = AttributeText.copy(alpha = 0.5f), fontSize = 10.sp)
+                Text(stringResource(R.string.item_req_level, 69), color = AttributeText.copy(alpha = 0.5f), fontSize = 10.sp)
+                Text(stringResource(R.string.item_value, 69), color = AttributeText.copy(alpha = 0.5f), fontSize = 10.sp)
             }
         }
     }

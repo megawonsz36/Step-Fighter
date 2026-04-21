@@ -2,40 +2,32 @@ package com.example.stepfighter.ui.components
 
 import android.app.Activity
 import android.content.Intent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material.icons.filled.Inventory
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Shield
 import androidx.compose.material3.*
-import com.example.stepfighter.ui.profile.GoldColor
-import com.example.stepfighter.ui.profile.BgColor
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.foundation.background
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.stepfighter.R
 import com.example.stepfighter.ui.dashboard.DashboardActivity
-import com.example.stepfighter.ui.dungeon.DungeonActivity
 import com.example.stepfighter.ui.inventory.InventoryActivity
-import com.example.stepfighter.ui.profile.ProfileActivity
-import com.example.stepfighter.ui.profile.AccentColor
-import com.example.stepfighter.ui.profile.CardBg
-import com.example.stepfighter.ui.profile.TextGray
+import com.example.stepfighter.ui.profile.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -73,7 +65,7 @@ fun TopStepFighterBar(onMenuClick: () -> Unit = {}) {
             actions = {
                 Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(end = 8.dp)) {
                     Text(
-                        "POZIOM 69",
+                        stringResource(R.string.top_level, 69),
                         color = TextGray,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold
@@ -102,17 +94,17 @@ fun BottomNavigationBar(selectedIndex: Int) {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            NavItem("Lochy", Icons.Default.Explore, selectedIndex == 0) {
+            NavItem(stringResource(R.string.nav_dungeons), Icons.Default.Explore, selectedIndex == 0) {
                 if (selectedIndex != 0) {
                     navigateTo(context as Activity, DashboardActivity::class.java)
                 }
             }
-            NavItem("Ekwipunek", Icons.Default.Inventory, selectedIndex == 1) {
+            NavItem(stringResource(R.string.nav_inventory), Icons.Default.Inventory, selectedIndex == 1) {
                 if (selectedIndex != 1) {
                     navigateTo(context as Activity, InventoryActivity::class.java)
                 }
             }
-            NavItem("Statystyki", Icons.Default.Person, selectedIndex == 2) {
+            NavItem(stringResource(R.string.nav_profile), Icons.Default.Person, selectedIndex == 2) {
                 if (selectedIndex != 2) {
                     navigateTo(context as Activity, ProfileActivity::class.java)
                 }
@@ -128,6 +120,7 @@ private fun navigateTo(activity: Activity, targetClass: Class<*>) {
     activity.startActivity(intent)
     activity.finish() // Zamykamy poprzednią aktywność, żeby nie wracać do niej przyciskiem wstecz
     // Wyłączamy animacje systemowe
+    @Suppress("DEPRECATION")
     activity.overridePendingTransition(0, 0)
 }
 
