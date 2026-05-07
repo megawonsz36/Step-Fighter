@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "889178886937",
+    "project_id": "step-fighter",
+    "storage_bucket": "step-fighter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889178886937:android:c1041f0ecacec25441ab88",
+        "android_client_info": {
+          "package_name": "com.example.stepfighter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM8krVPhGclW6YnFypP6lXZIdM45cpta0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
