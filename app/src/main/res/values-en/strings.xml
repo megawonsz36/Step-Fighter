@@ -103,4 +103,32 @@
     <string name="settings_notification_energy">Full energy</string>
     <string name="settings_sound_effects">Sound effects</string>
     <string name="settings_version">Version 1.0.0 - Alpha</string>
+
+    <string name="dungeon_map_title">DUNGEON MAP</string>
+    <string name="dungeon_waves_count">Waves: %1$d</string>
+    <string name="dungeon_status">%1$s - WAVE %2$d / %3$d</string>
+    <string name="victory_message">VICTORY! NEW REGION UNLOCKED!</string>
+    <string name="action_strike_desc_steps">Use steps to deal damage</string>
+    <string name="combat_log_location">Location: %1$s</string>
+    <string name="combat_log_enemy">Enemy: %1$s</string>
+
+    <string name="dungeon_1_name">Dark Entrance</string>
+    <string name="dungeon_2_name">Wolf Ravine</string>
+    <string name="dungeon_3_name">Rotting Swamps</string>
+    <string name="dungeon_4_name">Abandoned Mine</string>
+
+    <string name="enemy_goblin_scout">Goblin Scout</string>
+    <string name="enemy_rat">Mutated Rat</string>
+    <string name="enemy_skeleton">Skeleton Guard</string>
+    <string name="enemy_boss_goblin">GOBLIN KING</string>
+    <string name="enemy_wolf_young">Young Wolf</string>
+    <string name="enemy_spider">Forest Spider</string>
+    <string name="enemy_wolf">Furious Wolf</string>
+    <string name="enemy_alpha">ALPHA WOLF</string>
+    <string name="enemy_slime">Swamp Monster</string>
+    <string name="enemy_drowner">Drowner</string>
+    <string name="enemy_toad">Poisonous Toad</string>
+    <string name="enemy_hag">SWAMP HAG</string>
+    <string name="enemy_troll">Rock Troll</string>
+    <string name="enemy_golem">IRON GOLEM</string>
 </resources>
