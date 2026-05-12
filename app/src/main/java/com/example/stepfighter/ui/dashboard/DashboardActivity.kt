@@ -1,7 +1,6 @@
 package com.example.stepfighter.ui.dashboard
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -41,7 +40,7 @@ import com.example.stepfighter.R
 import com.example.stepfighter.ui.components.BottomNavigationBar
 import com.example.stepfighter.ui.components.SideMenuContent
 import com.example.stepfighter.ui.components.TopStepFighterBar
-import com.example.stepfighter.ui.dungeon.DungeonActivity
+import com.example.stepfighter.ui.dungeon.DungeonMapActivity
 import com.example.stepfighter.ui.profile.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
@@ -209,12 +208,12 @@ fun DashboardScreen() {
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                        Text(stringResource(R.string.no_enemies), color = GoldColor, fontWeight = FontWeight.Black, fontSize = 18.sp, letterSpacing = 1.sp)
-                                        Text(stringResource(R.string.no_enemies_desc), color = TextGray, fontSize = 12.sp, fontStyle = androidx.compose.ui.text.font.FontStyle.Italic)
+                                        Text("DUNGEONS READY", color = GoldColor, fontWeight = FontWeight.Black, fontSize = 18.sp, letterSpacing = 1.sp)
+                                        Text("Select a level and face your destiny", color = TextGray, fontSize = 12.sp, fontStyle = androidx.compose.ui.text.font.FontStyle.Italic)
                                         Spacer(Modifier.height(16.dp))
                                         Button(
                                             onClick = {
-                                                val intent = Intent(context, DungeonActivity::class.java)
+                                                val intent = Intent(context, DungeonMapActivity::class.java)
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                                                 context.startActivity(intent)
                                             },
@@ -223,7 +222,7 @@ fun DashboardScreen() {
                                             shape = RoundedCornerShape(4.dp),
                                             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 8.dp)
                                         ) {
-                                            Text(stringResource(R.string.fight_btn), color = GoldColor, fontWeight = FontWeight.Bold)
+                                            Text("GO INTO THE DUNGEON", color = GoldColor, fontWeight = FontWeight.Bold)
                                         }
                                     }
                                 }

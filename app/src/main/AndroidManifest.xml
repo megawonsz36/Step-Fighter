@@ -42,6 +42,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.dungeon.DungeonMapActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.dungeon.DungeonActivity"
             android:exported="false" />
 
