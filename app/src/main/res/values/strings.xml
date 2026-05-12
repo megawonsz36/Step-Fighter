@@ -103,4 +103,32 @@
     <string name="settings_notification_energy">Pełna energia</string>
     <string name="settings_sound_effects">Efekty dźwiękowe</string>
     <string name="settings_version">Wersja 1.0.0 - Alpha</string>
+
+    <string name="dungeon_map_title">MAPA LOCHÓW</string>
+    <string name="dungeon_waves_count">Fale: %1$d</string>
+    <string name="dungeon_status">%1$s - FALA %2$d / %3$d</string>
+    <string name="victory_message">ZWYCIĘSTWO! NOWY REGION ODBLOKOWANY!</string>
+    <string name="action_strike_desc_steps">Zużyj kroki, by zadać obrażenia</string>
+    <string name="combat_log_location">Lokalizacja: %1$s</string>
+    <string name="combat_log_enemy">Przeciwnik: %1$s</string>
+
+    <string name="dungeon_1_name">Mroczne Wejście</string>
+    <string name="dungeon_2_name">Wilczy Jar</string>
+    <string name="dungeon_3_name">Gnijące Bagna</string>
+    <string name="dungeon_4_name">Opuszczona Kopalnia</string>
+
+    <string name="enemy_goblin_scout">Goblin Zwiadowca</string>
+    <string name="enemy_rat">Zmutowany Szczur</string>
+    <string name="enemy_skeleton">Szkielet Strażnik</string>
+    <string name="enemy_boss_goblin">KRÓL GOBLINÓW</string>
+    <string name="enemy_wolf_young">Młody Wilk</string>
+    <string name="enemy_spider">Leśny Pająk</string>
+    <string name="enemy_wolf">Wściekły Wilk</string>
+    <string name="enemy_alpha">ALFA WATAHY</string>
+    <string name="enemy_slime">Bagienne Monstrum</string>
+    <string name="enemy_drowner">Utopiec</string>
+    <string name="enemy_toad">Trująca Ropucha</string>
+    <string name="enemy_hag">WIEDŹMA BAGIENNA</string>
+    <string name="enemy_troll">Skalny Troll</string>
+    <string name="enemy_golem">ŻELAZNY GOLEM</string>
 </resources>

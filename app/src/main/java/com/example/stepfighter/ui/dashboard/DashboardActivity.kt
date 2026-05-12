@@ -1,7 +1,6 @@
 package com.example.stepfighter.ui.dashboard
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -41,8 +40,9 @@ import com.example.stepfighter.R
 import com.example.stepfighter.ui.components.BottomNavigationBar
 import com.example.stepfighter.ui.components.SideMenuContent
 import com.example.stepfighter.ui.components.TopStepFighterBar
-import com.example.stepfighter.ui.dungeon.DungeonActivity
+import com.example.stepfighter.ui.dungeon.DungeonMapActivity
 import com.example.stepfighter.ui.profile.*
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 class DashboardActivity : ComponentActivity() {
@@ -61,6 +61,8 @@ fun DashboardScreen() {
     val context = LocalContext.current
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+    val currentUser = remember { FirebaseAuth.getInstance().currentUser }
+    val userName = currentUser?.displayName ?: "Wojownik"
 
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
         ModalNavigationDrawer(
@@ -81,6 +83,24 @@ fun DashboardScreen() {
                             TopStepFighterBar(onMenuClick = {
                                 scope.launch { drawerState.open() }
                             })
+                            Column(
+                                modifier = Modifier
+                                    .align(Alignment.CenterStart)
+                                    .padding(start = 16.dp)
+                            ) {
+                                Text(
+                                    text = "Witaj,",
+                                    color = TextGray,
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Text(
+                                    text = userName,
+                                    color = GoldColor,
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Black
+                                )
+                            }
                         }
                     },
                     bottomBar = { BottomNavigationBar(selectedIndex = 0) },
@@ -92,7 +112,6 @@ fun DashboardScreen() {
                             horizontalAlignment = Alignment.CenterHorizontally,
                             contentPadding = PaddingValues(bottom = innerPadding.calculateBottomPadding())
                         ) {
-                            // --- NAGŁÓWEK Z OBRAZKIEM ---
                             item {
                                 Box(
                                     modifier = Modifier
@@ -136,7 +155,6 @@ fun DashboardScreen() {
                                 }
                             }
 
-                            // --- POSTĘP ENERGII ---
                             item {
                                 Box(
                                     modifier = Modifier
@@ -179,7 +197,6 @@ fun DashboardScreen() {
                                 }
                             }
 
-                            // --- BLOK WALKI ---
                             item {
                                 Box(
                                     modifier = Modifier
@@ -191,29 +208,26 @@ fun DashboardScreen() {
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                        Text(stringResource(R.string.no_enemies), color = GoldColor, fontWeight = FontWeight.Black, fontSize = 18.sp, letterSpacing = 1.sp)
-                                        Text(stringResource(R.string.no_enemies_desc), color = TextGray, fontSize = 12.sp, fontStyle = androidx.compose.ui.text.font.FontStyle.Italic)
+                                        Text("DUNGEONS READY", color = GoldColor, fontWeight = FontWeight.Black, fontSize = 18.sp, letterSpacing = 1.sp)
+                                        Text("Select a level and face your destiny", color = TextGray, fontSize = 12.sp, fontStyle = androidx.compose.ui.text.font.FontStyle.Italic)
                                         Spacer(Modifier.height(16.dp))
                                         Button(
                                             onClick = {
-                                                val intent = Intent(context, DungeonActivity::class.java)
+                                                val intent = Intent(context, DungeonMapActivity::class.java)
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                                                 context.startActivity(intent)
-                                                @Suppress("DEPRECATION")
-                                                (context as Activity).overridePendingTransition(0, 0)
                                             },
                                             colors = ButtonDefaults.buttonColors(containerColor = GoldColor.copy(alpha = 0.1f)),
                                             border = BorderStroke(1.dp, GoldColor),
                                             shape = RoundedCornerShape(4.dp),
                                             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 8.dp)
                                         ) {
-                                            Text(stringResource(R.string.fight_btn), color = GoldColor, fontWeight = FontWeight.Bold)
+                                            Text("GO INTO THE DUNGEON", color = GoldColor, fontWeight = FontWeight.Bold)
                                         }
                                     }
                                 }
                             }
 
-                            // --- ZAPISZ POSTĘP ---
                             item {
                                 Row(
                                     modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp).background(CardBg, RoundedCornerShape(8.dp)).padding(16.dp),
@@ -231,7 +245,6 @@ fun DashboardScreen() {
                                 }
                             }
 
-                            // --- OSTATNIE ZNALEZISKA ---
                             item {
                                 Column(modifier = Modifier.fillMaxWidth().padding(24.dp)) {
                                     Text(stringResource(R.string.recent_finds), color = TextGray, fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp, modifier = Modifier.padding(bottom = 16.dp))
