@@ -6,23 +6,34 @@ plugins {
 
 android {
     namespace = "com.example.stepfighter"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
+    compileSdk = 35
+
+    signingConfigs {
+        create("shared") {
+
+            storeFile = file("../debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
         }
     }
 
     defaultConfig {
         applicationId = "com.example.stepfighter"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "GOOGLE_CLIENT_ID", "\"889178886937-4brhmt81nao7nnat4eri07isdccqrn84.apps.googleusercontent.com\"")
     }
 
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("shared")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -31,6 +42,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -38,8 +50,8 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
-
 }
 
 dependencies {
@@ -53,22 +65,16 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    // Integracja Compose z Activity
     implementation("androidx.activity:activity-compose:1.8.2")
-
-    // Zestaw podstawowych narzędzi Jetpack Compose (BOM pozwala nie wpisywać wersji do każdej linijki)
     val composeBom = platform("androidx.compose:compose-bom:2024.02.00")
     implementation(composeBom)
-    androidTestImplementation(composeBom)
-
-    // Główne biblioteki rysowania i Material Design 3
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
 
-    // Do podglądu (Preview)
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
 }
