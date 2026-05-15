@@ -8,7 +8,9 @@ class AuthManager {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     fun isUserLoggedIn(): Boolean {
-        return auth.currentUser != null && auth.currentUser!!.isEmailVerified
+
+        val user = auth.currentUser
+        return user != null && (user.isEmailVerified || user.providerData.any { it.providerId == "google.com" })
     }
 
     fun registerUser(email: String, password: String, username: String, onResult: (Boolean, String) -> Unit) {
@@ -42,14 +44,26 @@ class AuthManager {
         }
     }
 
-    fun loginWithGoogle(idToken: String, onResult: (Boolean, String) -> Unit) {
+
+    fun loginWithGoogle(idToken: String, onResult: (Boolean, String, Boolean) -> Unit) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                onResult(true, "Zalogowano przez Google")
+
+                val isNewUser = task.result?.additionalUserInfo?.isNewUser ?: false
+                onResult(true, "Zalogowano przez Google", isNewUser)
             } else {
-                onResult(false, task.exception?.message ?: "Błąd autoryzacji Google")
+                onResult(false, task.exception?.message ?: "Błąd autoryzacji Google", false)
             }
+        }
+    }
+
+
+    fun updateUsername(username: String, onResult: (Boolean) -> Unit) {
+        val user = auth.currentUser
+        val profileUpdates = userProfileChangeRequest { displayName = username }
+        user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
+            onResult(task.isSuccessful)
         }
     }
 }
