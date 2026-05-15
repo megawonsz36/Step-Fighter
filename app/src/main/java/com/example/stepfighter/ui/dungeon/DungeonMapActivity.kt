@@ -8,7 +8,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -77,24 +76,42 @@ fun DungeonMapScreen(unlockedLevel: Int) {
                 ) { innerPadding ->
                     LazyColumn(
                         modifier = Modifier.fillMaxSize().padding(innerPadding).padding(horizontal = 24.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
                         contentPadding = PaddingValues(top = 24.dp, bottom = 32.dp)
                     ) {
                         item {
                             Text(
                                 stringResource(R.string.dungeon_map_title),
                                 color = GoldColor,
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.Black
+                                fontSize = 28.sp,
+                                fontWeight = FontWeight.Black,
+                                modifier = Modifier.padding(bottom = 8.dp)
                             )
                         }
-                        items(dungeonLevelsData) { dungeon ->
-                            val isAvailable = dungeon.id <= unlockedLevel
-                            DungeonLevelCard(dungeon, isAvailable) {
-                                val intent = Intent(context, DungeonActivity::class.java)
-                                intent.putExtra("DUNGEON_ID", dungeon.id)
-                                context.startActivity(intent)
+
+                        val regions = dungeonLevelsData.groupBy { (it.id - 1) / 5 }
+
+                        regions.forEach { (regionIndex, levels) ->
+                            item {
+                                val regionTitle = when(regionIndex) {
+                                    0 -> stringResource(R.string.region_1)
+                                    1 -> stringResource(R.string.region_2)
+                                    2 -> stringResource(R.string.region_3)
+                                    3 -> stringResource(R.string.region_4)
+                                    4 -> stringResource(R.string.region_5)
+                                    else -> stringResource(R.string.region_final)
+                                }
+                                RegionHeader(regionTitle)
                             }
+                            items(levels) { dungeon ->
+                                val isAvailable = dungeon.id <= unlockedLevel
+                                DungeonLevelCard(dungeon, isAvailable) {
+                                    val intent = Intent(context, DungeonActivity::class.java)
+                                    intent.putExtra("DUNGEON_ID", dungeon.id)
+                                    context.startActivity(intent)
+                                }
+                            }
+                            item { Spacer(modifier = Modifier.height(16.dp)) }
                         }
                     }
                 }
@@ -104,23 +121,60 @@ fun DungeonMapScreen(unlockedLevel: Int) {
 }
 
 @Composable
+fun RegionHeader(title: String) {
+    Column(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+        Text(
+            text = title,
+            color = GoldColor.copy(alpha = 0.5f),
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 2.sp
+        )
+        HorizontalDivider(modifier = Modifier.padding(top = 4.dp), color = GoldColor.copy(alpha = 0.2f), thickness = 1.dp)
+    }
+}
+
+@Composable
 fun DungeonLevelCard(dungeon: DungeonLevel, isAvailable: Boolean, onClick: () -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth().clickable(enabled = isAvailable) { onClick() },
-        colors = CardDefaults.cardColors(containerColor = if (isAvailable) CardBg else Color.Black.copy(alpha = 0.5f)),
-        border = BorderStroke(1.dp, if (isAvailable) GoldColor.copy(alpha = 0.5f) else Color.White.copy(alpha = 0.1f))
+        colors = CardDefaults.cardColors(containerColor = if (isAvailable) CardBg else Color.Black.copy(alpha = 0.3f)),
+        border = BorderStroke(1.dp, if (isAvailable) GoldColor.copy(alpha = 0.3f) else Color.White.copy(alpha = 0.05f)),
+        shape = RoundedCornerShape(4.dp)
     ) {
-        Row(modifier = Modifier.padding(20.dp), verticalAlignment = Alignment.CenterVertically) {
-            Box(modifier = Modifier.size(40.dp).background(if (isAvailable) GoldColor else Color.DarkGray, RoundedCornerShape(20.dp)), contentAlignment = Alignment.Center) {
-                Text(dungeon.id.toString(), color = Color.Black, fontWeight = FontWeight.Black)
+        Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
+            Box(
+                modifier = Modifier
+                    .size(36.dp)
+                    .background(if (isAvailable) GoldColor else Color.DarkGray, RoundedCornerShape(2.dp)),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = dungeon.id.toString(),
+                    color = Color.Black,
+                    fontWeight = FontWeight.Black,
+                    fontSize = 14.sp
+                )
             }
-            Spacer(Modifier.width(20.dp))
+            Spacer(Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(stringResource(dungeon.nameRes).uppercase(), color = if (isAvailable) Color.White else Color.Gray, fontWeight = FontWeight.Bold, fontSize = 16.sp)
-                Text(stringResource(R.string.dungeon_waves_count, dungeon.enemies.size), color = TextGray, fontSize = 12.sp)
+                Text(
+                    text = stringResource(dungeon.nameRes).uppercase(),
+                    color = if (isAvailable) Color.White else Color.Gray,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 15.sp
+                )
+                Text(
+                    text = stringResource(R.string.dungeon_waves_count, dungeon.enemies.size),
+                    color = TextGray,
+                    fontSize = 11.sp
+                )
             }
-            if (isAvailable) Icon(Icons.Default.PlayArrow, null, tint = GoldColor)
-            else Icon(Icons.Default.Lock, null, tint = Color.Gray)
+            if (isAvailable) {
+                Icon(Icons.Default.PlayArrow, null, tint = GoldColor, modifier = Modifier.size(20.dp))
+            } else {
+                Icon(Icons.Default.Lock, null, tint = Color.Gray, modifier = Modifier.size(18.dp))
+            }
         }
     }
 }
