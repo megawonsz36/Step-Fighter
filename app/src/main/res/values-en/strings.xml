@@ -16,7 +16,6 @@
     <string name="find_boots_title">Seven-League Boots</string>
     <string name="find_boots_desc">Completed %1$d steps this week</string>
 
-    <!-- Profile -->
     <string name="total_steps_label">TOTAL STEPS</string>
     <string name="warrior_rank">Legend in the making</string>
     <string name="attributes_title">WARRIOR ATTRIBUTES</string>
@@ -31,7 +30,6 @@
     <string name="ach_peak_lord">Peak Lord</string>
     <string name="locked">Locked</string>
 
-    <!-- Days -->
     <string name="day_mon">MON</string>
     <string name="day_tue">TUE</string>
     <string name="day_wed">WED</string>
@@ -40,7 +38,6 @@
     <string name="day_sat">SAT</string>
     <string name="day_sun">SUN</string>
 
-    <!-- Dungeon -->
     <string name="enemy_name">CURSED GUARDIAN</string>
     <string name="hp_label">%1$d / %2$d HP</string>
     <string name="your_health">YOUR HEALTH</string>
@@ -55,7 +52,6 @@
     <string name="combat_log_enemy_action">Guardian: Performs a powerful swing!</string>
     <string name="combat_log_player_loss">You lose %1$d HP.</string>
 
-    <!-- Inventory -->
     <string name="inventory_title">INVENTORY</string>
     <string name="inventory_desc">Manage your gear and magical artifacts</string>
     <string name="slot_head">HEAD</string>
@@ -76,20 +72,17 @@
     <string name="item_req_level">Required Level: %1$d</string>
     <string name="item_value">Value: %1$d gold</string>
 
-    <!-- Navigation -->
     <string name="nav_dungeons">Dungeons</string>
     <string name="nav_inventory">Inventory</string>
     <string name="nav_profile">Profile</string>
     <string name="top_level">LEVEL %1$d</string>
 
-    <!-- Side Menu -->
     <string name="menu_title">MENU</string>
     <string name="menu_rankings">RANKINGS</string>
     <string name="menu_quest_book">QUEST BOOK</string>
     <string name="menu_settings">SETTINGS</string>
     <string name="menu_logout">LOGOUT</string>
 
-    <!-- Settings -->
     <string name="settings_title">SETTINGS</string>
     <string name="settings_desc">Adjust your system gear</string>
     <string name="settings_general">GENERAL</string>
@@ -116,14 +109,86 @@
     <string name="dungeon_2_name">Wolf Ravine</string>
     <string name="dungeon_3_name">Rotting Swamps</string>
     <string name="dungeon_4_name">Abandoned Mine</string>
+    <string name="dungeon_5_name">Hell\'s Gate</string>
+    <string name="dungeon_6_name">Sands of Time</string>
+    <string name="dungeon_7_name">Minotaur Labyrinth</string>
+    <string name="dungeon_8_name">Pirate Cove</string>
+    <string name="dungeon_9_name">Void Abyss</string>
+    <string name="dungeon_10_name">Volcano Heart</string>
+    <string name="dungeon_11_name">Ice Peak</string>
+    <string name="dungeon_12_name">Dracula\'s Castle</string>
+    <string name="dungeon_30_name">Tower of Gods</string>
+    <string name="generic_dungeon_name">Unknown Territory</string>
 
     <string name="enemy_goblin_scout">Goblin Scout</string>
     <string name="enemy_rat">Mutated Rat</string>
+    <string name="enemy_bat">Hungry Bat</string>
+    <string name="enemy_slime_small">Small Slime</string>
     <string name="enemy_skeleton">Skeleton Guard</string>
-    <string name="enemy_boss_goblin">GOBLIN KING</string>
-    <string name="enemy_wolf_young">Young Wolf</string>
-    <string name="enemy_spider">Forest Spider</string>
+    <string name="enemy_zombie">Rotting Zombie</string>
+    <string name="enemy_ghost">Ghost</string>
     <string name="enemy_wolf">Furious Wolf</string>
+    <string name="enemy_wolf_young">Young Wolf</string>
+    <string name="enemy_bear">Brown Bear</string>
+    <string name="enemy_boar">Wild Boar</string>
+    <string name="enemy_eagle">Mountain Eagle</string>
+    <string name="enemy_bandit">Bandit</string>
+    <string name="enemy_thief">Thief</string>
+    <string name="enemy_mercenary">Mercenary</string>
+    <string name="enemy_assassin">Assassin</string>
+    <string name="enemy_imp">Imp</string>
+    <string name="enemy_succubus">Succubus</string>
+    <string name="enemy_hellhound">Hellhound</string>
+    <string name="enemy_demon_warrior">Demon Warrior</string>
+    <string name="enemy_scorpion">Desert Scorpion</string>
+    <string name="enemy_mummy">Mummy</string>
+    <string name="enemy_sand_worm">Sand Worm</string>
+    <string name="enemy_anubis_guard">Anubis Guard</string>
+    <string name="enemy_harpy">Harpy</string>
+    <string name="enemy_cyclops">Cyclops</string>
+    <string name="enemy_minotaur">Minotaur</string>
+    <string name="enemy_medusa">Medusa</string>
+    <string name="enemy_pirate">Pirate</string>
+    <string name="enemy_siren">Siren</string>
+    <string name="enemy_crab_giant">Giant Crab</string>
+    <string name="enemy_kraken_tentacle">Kraken Tentacle</string>
+    <string name="enemy_cultist">Cultist</string>
+    <string name="enemy_dark_priest">Dark Priest</string>
+    <string name="enemy_shadow_beast">Shadow Beast</string>
+    <string name="enemy_void_walker">Void Walker</string>
+    <string name="enemy_lava_slime">Lava Slime</string>
+    <string name="enemy_fire_elemental">Fire Elemental</string>
+    <string name="enemy_ifrit">Ifrit</string>
+    <string name="enemy_phoenix">Phoenix</string>
+    <string name="enemy_ice_wolf">Ice Wolf</string>
+    <string name="enemy_yeti">Yeti</string>
+    <string name="enemy_frost_giant">Frost Giant</string>
+    <string name="enemy_vampire_bat">Vampire Bat</string>
+    <string name="enemy_vampire_fledgeling">Vampire Fledgeling</string>
+    <string name="enemy_vampire_lord">Vampire Lord</string>
+    <string name="enemy_final_guard_1">Guardian of Destiny</string>
+    <string name="enemy_final_guard_2">Guardian of Eternity</string>
+    <string name="enemy_final_guard_3">Guardian of the Void</string>
+
+    <string name="enemy_boss_goblin">GOBLIN KING</string>
+    <string name="enemy_boss_necromancer">NECROMANCER</string>
+    <string name="enemy_boss_ursine">BEAST MASTER</string>
+    <string name="enemy_boss_bandit_leader">BANDIT LEADER</string>
+    <string name="enemy_boss_pitlord">PIT LORD</string>
+    <string name="enemy_boss_pharaoh">PHARAOH</string>
+    <string name="enemy_boss_chimera">CHIMERA</string>
+    <string name="enemy_boss_kraken">KRAKEN</string>
+    <string name="enemy_boss_cthulhu_spawn">CTHULHU SPAWN</string>
+    <string name="enemy_boss_fire_dragon">FIRE DRAGON</string>
+    <string name="enemy_boss_lich_king">LICH KING</string>
+    <string name="enemy_boss_dracula">DRACULA</string>
+    <string name="enemy_boss_god_of_steps">GOD OF STEPS</string>
+
+    <string name="generic_enemy">Enemy</string>
+    <string name="generic_enemy_elite">Elite Enemy</string>
+    <string name="generic_boss">Region Boss</string>
+
+    <string name="enemy_spider">Forest Spider</string>
     <string name="enemy_alpha">ALPHA WOLF</string>
     <string name="enemy_slime">Swamp Monster</string>
     <string name="enemy_drowner">Drowner</string>
@@ -131,4 +196,13 @@
     <string name="enemy_hag">SWAMP HAG</string>
     <string name="enemy_troll">Rock Troll</string>
     <string name="enemy_golem">IRON GOLEM</string>
+
+    <string name="region_1">CHAPTER I: DARK CAVES</string>
+    <string name="region_2">CHAPTER II: FORGOTTEN SANDS</string>
+    <string name="region_3">CHAPTER III: ICY WASTELANDS</string>
+    <string name="region_4">CHAPTER IV: CURSED SWAMPS</string>
+    <string name="region_5">CHAPTER V: VOLCANIC ABYSS</string>
+    <string name="region_final">CHAPTER VI: FINAL CONFRONTATION</string>
+
+
 </resources>

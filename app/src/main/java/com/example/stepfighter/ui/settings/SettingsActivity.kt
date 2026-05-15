@@ -1,6 +1,7 @@
 package com.example.stepfighter.ui.settings
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -22,12 +23,14 @@ import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.NotificationsActive
+import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.stringResource
 import androidx.appcompat.app.AppCompatDelegate
@@ -42,7 +45,9 @@ import com.example.stepfighter.R
 import com.example.stepfighter.ui.components.BottomNavigationBar
 import com.example.stepfighter.ui.components.SideMenuContent
 import com.example.stepfighter.ui.components.TopStepFighterBar
+import com.example.stepfighter.ui.login.LoginActivity
 import com.example.stepfighter.ui.profile.*
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 class SettingsActivity : AppCompatActivity() {
@@ -81,7 +86,7 @@ fun SettingsScreen() {
                             scope.launch { drawerState.open() }
                         })
                     },
-                    bottomBar = { BottomNavigationBar(selectedIndex = -1) }, // Brak zaznaczenia na barze
+                    bottomBar = { BottomNavigationBar(selectedIndex = -1) },
                     containerColor = BgColor
                 ) { innerPadding ->
                     Box(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
@@ -111,6 +116,7 @@ fun SettingsScreen() {
 
 @Composable
 fun MainSettingsMenu(onNavigate: (String) -> Unit) {
+    val context = LocalContext.current
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -151,6 +157,23 @@ fun MainSettingsMenu(onNavigate: (String) -> Unit) {
             SettingsSection(stringResource(R.string.settings_help)) {
                 SettingsItem(stringResource(R.string.settings_help), Icons.AutoMirrored.Filled.HelpOutline)
                 SettingsItem(stringResource(R.string.settings_version), Icons.Default.Info, showChevron = false)
+            }
+        }
+
+
+        item {
+            SettingsSection("KONTO") {
+                SettingsItem(
+                    label = "Wyloguj się",
+                    icon = Icons.Default.Logout,
+                    showChevron = false,
+                    onClick = {
+                        FirebaseAuth.getInstance().signOut()
+                        val intent = Intent(context, LoginActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        context.startActivity(intent)
+                    }
+                )
             }
         }
     }
@@ -240,7 +263,7 @@ fun SettingsItem(
         Icon(icon, null, tint = GoldColor, modifier = Modifier.size(24.dp))
         Spacer(Modifier.width(16.dp))
         Text(label, color = Color.White, fontSize = 14.sp, modifier = Modifier.weight(1f))
-        
+
         if (hasSwitch) {
             Switch(
                 checked = switchState,

@@ -12,7 +12,20 @@
           "package_name": "com.example.stepfighter"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "889178886937-1k7cg3o9240h2iqe4qfid1eub3rdke26.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stepfighter",
+            "certificate_hash": "4ebe57657bbb9bffe3d1f608ec25f684bfa338f5"
+          }
+        },
+        {
+          "client_id": "889178886937-4brhmt81nao7nnat4eri07isdccqrn84.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCM8krVPhGclW6YnFypP6lXZIdM45cpta0"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889178886937-4brhmt81nao7nnat4eri07isdccqrn84.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

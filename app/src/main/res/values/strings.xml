@@ -16,7 +16,6 @@
     <string name="find_boots_title">Buty Siedmiomilowe</string>
     <string name="find_boots_desc">Zaliczono %1$d kroków w tym tygodniu</string>
 
-    <!-- Profile -->
     <string name="total_steps_label">ŁĄCZNA LICZBA KROKÓW</string>
     <string name="warrior_rank">Legenda w drodze</string>
     <string name="attributes_title">ATRYBUTY WOJOWNIKA</string>
@@ -31,7 +30,6 @@
     <string name="ach_peak_lord">Władca Szczytów</string>
     <string name="locked">Zablokowane</string>
 
-    <!-- Days -->
     <string name="day_mon">PON</string>
     <string name="day_tue">WT</string>
     <string name="day_wed">ŚR</string>
@@ -40,7 +38,6 @@
     <string name="day_sat">SOB</string>
     <string name="day_sun">ND</string>
 
-    <!-- Dungeon -->
     <string name="enemy_name">PRZEKLĘTY STRAŻNIK</string>
     <string name="hp_label">%1$d / %2$d HP</string>
     <string name="your_health">TWOJE ZDROWIE</string>
@@ -55,7 +52,6 @@
     <string name="combat_log_enemy_action">Strażnik: Wykonuje potężny zamach!</string>
     <string name="combat_log_player_loss">Tracisz %1$d HP.</string>
 
-    <!-- Inventory -->
     <string name="inventory_title">EKWIPUNEK</string>
     <string name="inventory_desc">Zarządzaj swoim rynsztunkiem i magicznymi artefaktami</string>
     <string name="slot_head">GŁOWA</string>
@@ -76,20 +72,17 @@
     <string name="item_req_level">Wymagany Poziom: %1$d</string>
     <string name="item_value">Wartość: %1$d złota</string>
 
-    <!-- Navigation -->
     <string name="nav_dungeons">Lochy</string>
     <string name="nav_inventory">Ekwipunek</string>
     <string name="nav_profile">Statystyki</string>
     <string name="top_level">POZIOM %1$d</string>
 
-    <!-- Side Menu -->
     <string name="menu_title">MENU</string>
     <string name="menu_rankings">RANKINGI</string>
     <string name="menu_quest_book">KSIĘGA ZADAŃ</string>
     <string name="menu_settings">USTAWIENIA</string>
     <string name="menu_logout">WYLOGUJ</string>
 
-    <!-- Settings -->
     <string name="settings_title">USTAWIENIA</string>
     <string name="settings_desc">Dostosuj swój rynsztunek systemowy</string>
     <string name="settings_general">OGÓLNE</string>
@@ -116,14 +109,86 @@
     <string name="dungeon_2_name">Wilczy Jar</string>
     <string name="dungeon_3_name">Gnijące Bagna</string>
     <string name="dungeon_4_name">Opuszczona Kopalnia</string>
+    <string name="dungeon_5_name">Wrota Piekieł</string>
+    <string name="dungeon_6_name">Piaski Czasu</string>
+    <string name="dungeon_7_name">Labirynt Minotaura</string>
+    <string name="dungeon_8_name">Zatoka Piratów</string>
+    <string name="dungeon_9_name">Otchłań Pustki</string>
+    <string name="dungeon_10_name">Serce Wulkanu</string>
+    <string name="dungeon_11_name">Lodowy Szczyt</string>
+    <string name="dungeon_12_name">Zamek Draculi</string>
+    <string name="dungeon_30_name">Wieża Bogów</string>
+    <string name="generic_dungeon_name">Nieznane Terytorium</string>
 
     <string name="enemy_goblin_scout">Goblin Zwiadowca</string>
     <string name="enemy_rat">Zmutowany Szczur</string>
+    <string name="enemy_bat">Głodny Nietoperz</string>
+    <string name="enemy_slime_small">Mały Szlam</string>
     <string name="enemy_skeleton">Szkielet Strażnik</string>
-    <string name="enemy_boss_goblin">KRÓL GOBLINÓW</string>
-    <string name="enemy_wolf_young">Młody Wilk</string>
-    <string name="enemy_spider">Leśny Pająk</string>
+    <string name="enemy_zombie">Gnijący Truposz</string>
+    <string name="enemy_ghost">Zjawa</string>
     <string name="enemy_wolf">Wściekły Wilk</string>
+    <string name="enemy_wolf_young">Młody Wilk</string>
+    <string name="enemy_bear">Niedźwiedź Brunatny</string>
+    <string name="enemy_boar">Dziki Odyniec</string>
+    <string name="enemy_eagle">Górski Orzeł</string>
+    <string name="enemy_bandit">Bandyta</string>
+    <string name="enemy_thief">Złodziej</string>
+    <string name="enemy_mercenary">Najemnik</string>
+    <string name="enemy_assassin">Asasyn</string>
+    <string name="enemy_imp">Imp</string>
+    <string name="enemy_succubus">Sukkub</string>
+    <string name="enemy_hellhound">Piekielny Ogar</string>
+    <string name="enemy_demon_warrior">Demon Wojownik</string>
+    <string name="enemy_scorpion">Skorpion Pustynny</string>
+    <string name="enemy_mummy">Mumia</string>
+    <string name="enemy_sand_worm">Czerw Pustynny</string>
+    <string name="enemy_anubis_guard">Strażnik Anubisa</string>
+    <string name="enemy_harpy">Harpia</string>
+    <string name="enemy_cyclops">Cyklop</string>
+    <string name="enemy_minotaur">Minotaur</string>
+    <string name="enemy_medusa">Meduza</string>
+    <string name="enemy_pirate">Pirat</string>
+    <string name="enemy_siren">Syrena</string>
+    <string name="enemy_crab_giant">Gigantyczny Krab</string>
+    <string name="enemy_kraken_tentacle">Macka Krakena</string>
+    <string name="enemy_cultist">Kultysta</string>
+    <string name="enemy_dark_priest">Mroczny Kapłan</string>
+    <string name="enemy_shadow_beast">Bestia Cienia</string>
+    <string name="enemy_void_walker">Wędrowiec Pustki</string>
+    <string name="enemy_lava_slime">Lawa Szlam</string>
+    <string name="enemy_fire_elemental">Elemental Ognia</string>
+    <string name="enemy_ifrit">Ifrit</string>
+    <string name="enemy_phoenix">Feniks</string>
+    <string name="enemy_ice_wolf">Lodowy Wilk</string>
+    <string name="enemy_yeti">Yeti</string>
+    <string name="enemy_frost_giant">Lodowy Gigant</string>
+    <string name="enemy_vampire_bat">Wampirzy Nietoperz</string>
+    <string name="enemy_vampire_fledgeling">Młody Wampir</string>
+    <string name="enemy_vampire_lord">Władca Wampirów</string>
+    <string name="enemy_final_guard_1">Strażnik Przeznaczenia</string>
+    <string name="enemy_final_guard_2">Strażnik Wieczności</string>
+    <string name="enemy_final_guard_3">Strażnik Pustki</string>
+
+    <string name="enemy_boss_goblin">KRÓL GOBLINÓW</string>
+    <string name="enemy_boss_necromancer">NEKROMANTA</string>
+    <string name="enemy_boss_ursine">WŁADCA BESTII</string>
+    <string name="enemy_boss_bandit_leader">SZEF BANDYTÓW</string>
+    <string name="enemy_boss_pitlord">WŁADCA OTCHŁANI</string>
+    <string name="enemy_boss_pharaoh">FARAON</string>
+    <string name="enemy_boss_chimera">CHIMERA</string>
+    <string name="enemy_boss_kraken">KRAKEN</string>
+    <string name="enemy_boss_cthulhu_spawn">POMIOT CTHULHU</string>
+    <string name="enemy_boss_fire_dragon">SMOK OGNIA</string>
+    <string name="enemy_boss_lich_king">KRÓL LICZ</string>
+    <string name="enemy_boss_dracula">DRACULA</string>
+    <string name="enemy_boss_god_of_steps">BÓG KROKÓW</string>
+
+    <string name="generic_enemy">Przeciwnik</string>
+    <string name="generic_enemy_elite">Elitarny Przeciwnik</string>
+    <string name="generic_boss">Boss Regionu</string>
+
+    <string name="enemy_spider">Leśny Pająk</string>
     <string name="enemy_alpha">ALFA WATAHY</string>
     <string name="enemy_slime">Bagienne Monstrum</string>
     <string name="enemy_drowner">Utopiec</string>
@@ -131,4 +196,14 @@
     <string name="enemy_hag">WIEDŹMA BAGIENNA</string>
     <string name="enemy_troll">Skalny Troll</string>
     <string name="enemy_golem">ŻELAZNY GOLEM</string>
+
+    <string name="region_1">ROZDZIAŁ I: MROCZNE JASKINIE</string>
+    <string name="region_2">ROZDZIAŁ II: ZAPOMNIANE PIASKI</string>
+    <string name="region_3">ROZDZIAŁ III: LODOWE PUSTKOWIA</string>
+    <string name="region_4">ROZDZIAŁ IV: PRZEKLĘTE BAGNA</string>
+    <string name="region_5">ROZDZIAŁ V: WULKANICZNA OTCHŁAŃ</string>
+    <string name="region_final">ROZDZIAŁ VI: OSTATECZNE STARCIE</string>
+
+
+
 </resources>
