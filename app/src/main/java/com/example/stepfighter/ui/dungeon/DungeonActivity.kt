@@ -16,7 +16,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.DirectionsRun
-import androidx.compose.material.icons.filled.FlashOn
 import androidx.compose.material.icons.filled.ViewInAr
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -43,6 +42,7 @@ import com.example.stepfighter.ui.components.SideMenuContent
 import com.example.stepfighter.ui.components.TopStepFighterBar
 import com.example.stepfighter.ui.profile.*
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class DungeonActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,12 +62,22 @@ fun DungeonScreen(dungeonId: Int) {
     val levelData = dungeonLevelsData.find { it.id == dungeonId } ?: dungeonLevelsData[0]
 
     var currentWaveIndex by remember { mutableIntStateOf(0) }
-    val currentEnemy = levelData.enemies[currentWaveIndex]
-    var currentEnemyHp by remember { mutableIntStateOf(currentEnemy.maxHp) }
-    var playerHp by remember { mutableIntStateOf(100) }
-    var availableSteps by remember { mutableIntStateOf(2000) }
+    var currentEnemyHp by remember { mutableIntStateOf(levelData.enemies[currentWaveIndex].maxHp) }
 
+    var playerHp by remember { mutableIntStateOf(500) }
+    var maxPlayerHp by remember { mutableIntStateOf(500) }
+    var availableSteps by remember { mutableIntStateOf(10000) }
+
+    val combatLogs = remember { mutableStateListOf<Pair<String, Color>>() }
+    val currentEnemy = levelData.enemies[currentWaveIndex]
     val victoryMsg = stringResource(R.string.victory_message)
+
+    fun resetDungeon() {
+        currentWaveIndex = 0
+        currentEnemyHp = levelData.enemies[0].maxHp
+        playerHp = maxPlayerHp
+        combatLogs.clear()
+    }
 
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
         ModalNavigationDrawer(
@@ -135,9 +145,9 @@ fun DungeonScreen(dungeonId: Int) {
                                     Text(stringResource(R.string.your_health), color = TextGray, fontSize = 10.sp, fontWeight = FontWeight.Bold)
                                     Spacer(Modifier.height(8.dp))
                                     Box(modifier = Modifier.fillMaxWidth().height(4.dp).background(Color.Black, RoundedCornerShape(2.dp))) {
-                                        Box(modifier = Modifier.fillMaxWidth(playerHp / 100f).fillMaxHeight().background(GoldColor, RoundedCornerShape(2.dp)))
+                                        Box(modifier = Modifier.fillMaxWidth(playerHp / maxPlayerHp.toFloat()).fillMaxHeight().background(GoldColor, RoundedCornerShape(2.dp)))
                                     }
-                                    Text("$playerHp / 100", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Black)
+                                    Text("$playerHp / $maxPlayerHp", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Black)
                                 }
                                 Column(modifier = Modifier.weight(1f).background(CardBg, RoundedCornerShape(4.dp)).border(BorderStroke(1.dp, Color.White.copy(alpha = 0.05f)), RoundedCornerShape(4.dp)).padding(12.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                                     Text(stringResource(R.string.available_steps), color = TextGray, fontSize = 10.sp, fontWeight = FontWeight.Bold)
@@ -152,14 +162,24 @@ fun DungeonScreen(dungeonId: Int) {
                         item {
                             Button(
                                 onClick = {
-                                    if (availableSteps >= currentEnemy.costToHit) {
+                                    if (availableSteps >= currentEnemy.costToHit && playerHp > 0) {
                                         availableSteps -= currentEnemy.costToHit
-                                        val dmg = 30
-                                        if (currentEnemyHp - dmg <= 0) {
+
+                                        val playerRoll = Random.nextInt(25, 41)
+                                        val playerAtkPrefix = if (context.getString(R.string.lang_pl) == "Polski") "Atakujesz za" else "You attack for"
+                                        val dmgSuffix = if (context.getString(R.string.lang_pl) == "Polski") "obrażeń" else "damage"
+
+                                        combatLogs.add("$playerAtkPrefix $playerRoll $dmgSuffix" to Color(0xFF64DD17))
+
+                                        if (currentEnemyHp - playerRoll <= 0) {
                                             currentEnemyHp = 0
                                             if (currentWaveIndex < levelData.enemies.size - 1) {
                                                 currentWaveIndex++
                                                 currentEnemyHp = levelData.enemies[currentWaveIndex].maxHp
+                                                combatLogs.clear()
+                                                val nextEnemyName = context.getString(levelData.enemies[currentWaveIndex].nameRes)
+                                                val newEnemyPrefix = if (context.getString(R.string.lang_pl) == "Polski") "Nowy przeciwnik:" else "New enemy:"
+                                                combatLogs.add("$newEnemyPrefix $nextEnemyName" to GoldColor)
                                             } else {
                                                 val prefs = context.getSharedPreferences("game_prefs", Context.MODE_PRIVATE)
                                                 val currentMax = prefs.getInt("unlocked_level", 1)
@@ -169,7 +189,25 @@ fun DungeonScreen(dungeonId: Int) {
                                                 Toast.makeText(context, victoryMsg, Toast.LENGTH_LONG).show()
                                                 (context as? Activity)?.finish()
                                             }
-                                        } else { currentEnemyHp -= dmg }
+                                        } else {
+                                            currentEnemyHp -= playerRoll
+
+                                            val minDmg = (currentEnemy.power * 0.7).toInt()
+                                            val maxDmg = (currentEnemy.power * 1.1).toInt()
+                                            val dmgTaken = Random.nextInt(minDmg, maxDmg + 1)
+
+                                            playerHp -= dmgTaken
+                                            val enemyName = context.getString(currentEnemy.nameRes)
+                                            val enemyAtkSuffix = if (context.getString(R.string.lang_pl) == "Polski") "atakuje za" else "attacks for"
+
+                                            combatLogs.add("$enemyName $enemyAtkSuffix $dmgTaken $dmgSuffix" to Color(0xFFFF5252))
+
+                                            if (playerHp <= 0) {
+                                                playerHp = 0
+                                                Toast.makeText(context, context.getString(R.string.locked), Toast.LENGTH_LONG).show()
+                                                resetDungeon()
+                                            }
+                                        }
                                     }
                                 },
                                 modifier = Modifier.fillMaxWidth().height(64.dp),
@@ -194,8 +232,9 @@ fun DungeonScreen(dungeonId: Int) {
                                     Spacer(Modifier.height(12.dp))
                                     HorizontalDivider(color = AttributeText.copy(alpha = 0.1f))
                                     Spacer(Modifier.height(12.dp))
-                                    Text(stringResource(R.string.combat_log_location, stringResource(levelData.nameRes)), color = AttributeText.copy(alpha = 0.6f), fontStyle = FontStyle.Italic, fontSize = 12.sp)
-                                    Text(stringResource(R.string.combat_log_enemy, stringResource(currentEnemy.nameRes)), color = AttributeText, fontSize = 13.sp)
+                                    combatLogs.takeLast(4).forEach { (log, color) ->
+                                        Text(log, color = color, fontSize = 12.sp, modifier = Modifier.padding(vertical = 2.dp))
+                                    }
                                 }
                             }
                         }
