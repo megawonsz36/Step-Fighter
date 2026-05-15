@@ -105,20 +105,41 @@
     <string name="combat_log_location">Location: %1$s</string>
     <string name="combat_log_enemy">Enemy: %1$s</string>
 
-    <string name="dungeon_1_name">Dark Entrance</string>
-    <string name="dungeon_2_name">Wolf Ravine</string>
-    <string name="dungeon_3_name">Rotting Swamps</string>
-    <string name="dungeon_4_name">Abandoned Mine</string>
-    <string name="dungeon_5_name">Hell\'s Gate</string>
-    <string name="dungeon_6_name">Sands of Time</string>
-    <string name="dungeon_7_name">Minotaur Labyrinth</string>
-    <string name="dungeon_8_name">Pirate Cove</string>
-    <string name="dungeon_9_name">Void Abyss</string>
-    <string name="dungeon_10_name">Volcano Heart</string>
-    <string name="dungeon_11_name">Ice Peak</string>
-    <string name="dungeon_12_name">Dracula\'s Castle</string>
+    <string name="dungeon_1_name">Damp Corridor</string>
+    <string name="dungeon_2_name">Spiders Nest</string>
+    <string name="dungeon_3_name">Whisper of Stalactites</string>
+    <string name="dungeon_4_name">Forgotten Mine</string>
+    <string name="dungeon_5_name">Cave Heart</string>
+
+    <string name="dungeon_6_name">Desert Gate</string>
+    <string name="dungeon_7_name">Quicksands</string>
+    <string name="dungeon_8_name">Oasis of Shadows</string>
+    <string name="dungeon_9_name">Cursed Excavations</string>
+    <string name="dungeon_10_name">The Golden Pyramid</string>
+
+    <string name="dungeon_11_name">Frozen Pass</string>
+    <string name="dungeon_12_name">Yeti Cave</string>
+    <string name="dungeon_13_name">Crystal Glacier</string>
+    <string name="dungeon_14_name">Frost Village</string>
+    <string name="dungeon_15_name">Everwinter Fortress</string>
+
+    <string name="dungeon_16_name">Rotting Marshes</string>
+    <string name="dungeon_17_name">Misty Haven</string>
+    <string name="dungeon_18_name">Witches Habitat</string>
+    <string name="dungeon_19_name">Drowners Bay</string>
+    <string name="dungeon_20_name">Swamp Temple</string>
+
+    <string name="dungeon_21_name">Fiery Rift</string>
+    <string name="dungeon_22_name">Lava River</string>
+    <string name="dungeon_23_name">Demon Forge</string>
+    <string name="dungeon_24_name">Volcanic Peak</string>
+    <string name="dungeon_25_name">Throne of Fire</string>
+
+    <string name="dungeon_26_name">Heaven Gate</string>
+    <string name="dungeon_27_name">Labyrinth of Time</string>
+    <string name="dungeon_28_name">Sky Citadel</string>
+    <string name="dungeon_29_name">World\'s Edge</string>
     <string name="dungeon_30_name">Tower of Gods</string>
-    <string name="generic_dungeon_name">Unknown Territory</string>
 
     <string name="enemy_goblin_scout">Goblin Scout</string>
     <string name="enemy_rat">Mutated Rat</string>
