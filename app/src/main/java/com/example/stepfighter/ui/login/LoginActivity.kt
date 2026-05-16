@@ -1,5 +1,6 @@
 package com.example.stepfighter.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -33,15 +34,29 @@ import com.example.stepfighter.ui.profile.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val authManager = AuthManager()
+        val prefs = getSharedPreferences("game_prefs", Context.MODE_PRIVATE)
+        val rememberMe = prefs.getBoolean("remember_me", false)
+
+
+        if (!rememberMe) {
+            FirebaseAuth.getInstance().signOut()
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+            GoogleSignIn.getClient(this, gso).signOut()
+        }
+
+
         if (authManager.isUserLoggedIn()) {
             startActivity(Intent(this, DashboardActivity::class.java))
             finish()
         }
+
         setContent { LoginScreen() }
     }
 }
@@ -52,16 +67,30 @@ fun LoginScreen() {
     val authManager = remember { AuthManager() }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var rememberMe by remember { mutableStateOf(true) }
+
+
+    val prefs = remember { context.getSharedPreferences("game_prefs", Context.MODE_PRIVATE) }
+    var rememberMe by remember { mutableStateOf(prefs.getBoolean("remember_me", true)) }
+
+    var showNickDialog by remember { mutableStateOf(false) }
+    var newUsername by remember { mutableStateOf("") }
 
     val googleLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
         try {
             val account = task.getResult(ApiException::class.java)
             account?.idToken?.let { token ->
-                authManager.loginWithGoogle(token) { success, msg ->
+
+                prefs.edit().putBoolean("remember_me", rememberMe).apply()
+
+                authManager.loginWithGoogle(token) { success, msg, isNewUser ->
                     if (success) {
-                        context.startActivity(Intent(context, DashboardActivity::class.java))
+                        if (isNewUser) {
+                            showNickDialog = true
+                        } else {
+                            context.startActivity(Intent(context, DashboardActivity::class.java))
+                            (context as? ComponentActivity)?.finish()
+                        }
                     } else Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -70,12 +99,45 @@ fun LoginScreen() {
         }
     }
 
+    if (showNickDialog) {
+        AlertDialog(
+            onDismissRequest = { },
+            containerColor = Color(0xFF1A1A1A),
+            title = { Text("WITAJ BOHATERZE!", color = GoldColor, fontWeight = FontWeight.Bold) },
+            text = {
+                Column {
+                    Text("Podaj swój unikalny pseudonim:", color = Color.White, fontSize = 14.sp)
+                    Spacer(Modifier.height(16.dp))
+                    LoginInput(newUsername, { newUsername = it }, "NICK", Icons.Default.Badge)
+                }
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        if (newUsername.length >= 3) {
+                            authManager.updateUsername(newUsername) { success ->
+                                if (success) {
+                                    context.startActivity(Intent(context, DashboardActivity::class.java))
+                                    (context as? ComponentActivity)?.finish()
+                                }
+                            }
+                        } else {
+                            Toast.makeText(context, "Nick musi mieć min. 3 znaki", Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = GoldColor)
+                ) {
+                    Text("ZACZYNAMY", color = Color.Black)
+                }
+            }
+        )
+    }
+
     Column(
         modifier = Modifier.fillMaxSize().background(Color(0xFF0F0F0F)).padding(28.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
         Surface(
             modifier = Modifier.size(90.dp),
             color = GoldColor.copy(alpha = 0.1f),
@@ -110,16 +172,17 @@ fun LoginScreen() {
 
         Button(
             onClick = {
+                prefs.edit().putBoolean("remember_me", rememberMe).apply()
                 authManager.loginUser(email, password) { success, msg ->
                     if (success) {
                         context.startActivity(Intent(context, DashboardActivity::class.java))
+                        (context as? ComponentActivity)?.finish()
                     } else Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                 }
             },
             modifier = Modifier.fillMaxWidth().height(56.dp),
             colors = ButtonDefaults.buttonColors(containerColor = GoldColor),
-            shape = RoundedCornerShape(12.dp),
-            elevation = ButtonDefaults.buttonElevation(8.dp)
+            shape = RoundedCornerShape(12.dp)
         ) {
             Text("ZALOGUJ SIĘ", color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 16.sp)
         }
@@ -133,7 +196,10 @@ fun LoginScreen() {
                     .requestEmail()
                     .build()
                 val client = GoogleSignIn.getClient(context, gso)
-                googleLauncher.launch(client.signInIntent)
+
+                client.signOut().addOnCompleteListener {
+                    googleLauncher.launch(client.signInIntent)
+                }
             },
             modifier = Modifier.fillMaxWidth().height(56.dp),
             shape = RoundedCornerShape(12.dp),
@@ -161,7 +227,7 @@ fun LoginScreen() {
 }
 
 @Composable
-fun LoginInput(value: String, onValueChange: (String) -> Unit, label: String, icon: ImageVector, isPass: Boolean = false) {
+private fun LoginInput(value: String, onValueChange: (String) -> Unit, label: String, icon: ImageVector, isPass: Boolean = false) {
     OutlinedTextField(
         value = value, onValueChange = onValueChange,
         label = { Text(label) },

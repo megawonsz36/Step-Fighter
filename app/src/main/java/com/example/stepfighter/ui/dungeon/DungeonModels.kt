@@ -18,7 +18,6 @@ data class DungeonLevel(
 )
 
 val dungeonLevelsData = listOf(
-
     DungeonLevel(1, R.string.dungeon_1_name, listOf(
         EnemyData(R.string.enemy_rat, R.drawable.enemy_placeholder, 40, 5, 8),
         EnemyData(R.string.enemy_goblin_scout, R.drawable.enemy_placeholder, 60, 8, 12),
@@ -54,8 +53,6 @@ val dungeonLevelsData = listOf(
         EnemyData(R.string.enemy_demon_warrior, R.drawable.enemy_placeholder, 400, 50, 50),
         EnemyData(R.string.enemy_boss_pitlord, R.drawable.enemy_placeholder, 1200, 80, 100)
     )),
-
-
     DungeonLevel(6, R.string.dungeon_6_name, listOf(
         EnemyData(R.string.enemy_scorpion, R.drawable.enemy_placeholder, 180, 28, 25),
         EnemyData(R.string.enemy_mummy, R.drawable.enemy_placeholder, 300, 20, 30),
@@ -91,8 +88,6 @@ val dungeonLevelsData = listOf(
         EnemyData(R.string.enemy_phoenix, R.drawable.enemy_placeholder, 800, 110, 100),
         EnemyData(R.string.enemy_boss_fire_dragon, R.drawable.enemy_placeholder, 5000, 200, 400)
     )),
-
-
     DungeonLevel(11, R.string.dungeon_11_name, listOf(
         EnemyData(R.string.enemy_ice_wolf, R.drawable.enemy_placeholder, 500, 60, 60),
         EnemyData(R.string.enemy_yeti, R.drawable.enemy_placeholder, 1000, 90, 100),
@@ -105,20 +100,96 @@ val dungeonLevelsData = listOf(
         EnemyData(R.string.enemy_vampire_lord, R.drawable.enemy_placeholder, 1200, 150, 150),
         EnemyData(R.string.enemy_boss_dracula, R.drawable.enemy_placeholder, 8000, 300, 600)
     )),
-
-    *(13..29).map { id ->
-        DungeonLevel(id, R.string.generic_dungeon_name, listOf(
-            EnemyData(R.string.generic_enemy, R.drawable.enemy_placeholder, 1000 + (id * 100), 100 + (id * 5), 100 + id),
-            EnemyData(R.string.generic_enemy_elite, R.drawable.enemy_placeholder, 2000 + (id * 150), 150 + (id * 8), 150 + id),
-            EnemyData(R.string.generic_boss, R.drawable.enemy_placeholder, 10000 + (id * 500), 400 + (id * 10), 800 + id)
-        ))
-    }.toTypedArray(),
-
-
+    DungeonLevel(13, R.string.dungeon_13_name, listOf(
+        EnemyData(R.string.enemy_skeleton, R.drawable.enemy_placeholder, 1300, 105, 113),
+        EnemyData(R.string.enemy_ghost, R.drawable.enemy_placeholder, 2300, 158, 163),
+        EnemyData(R.string.enemy_boss_necromancer, R.drawable.enemy_placeholder, 10500, 410, 813)
+    )),
+    DungeonLevel(14, R.string.dungeon_14_name, listOf(
+        EnemyData(R.string.enemy_slime_small, R.drawable.enemy_placeholder, 1400, 110, 114),
+        EnemyData(R.string.enemy_ghost, R.drawable.enemy_placeholder, 2400, 166, 164),
+        EnemyData(R.string.enemy_boss_necromancer, R.drawable.enemy_placeholder, 11000, 420, 814)
+    )),
+    DungeonLevel(15, R.string.dungeon_15_name, listOf(
+        EnemyData(R.string.enemy_shadow_beast, R.drawable.enemy_placeholder, 1500, 115, 115),
+        EnemyData(R.string.enemy_shadow_beast, R.drawable.enemy_placeholder, 2500, 174, 165),
+        EnemyData(R.string.enemy_boss_pitlord, R.drawable.enemy_placeholder, 11500, 430, 815)
+    )),
+    DungeonLevel(16, R.string.dungeon_16_name, listOf(
+        EnemyData(R.string.enemy_scorpion, R.drawable.enemy_placeholder, 1600, 120, 116),
+        EnemyData(R.string.enemy_scorpion, R.drawable.enemy_placeholder, 2600, 182, 166),
+        EnemyData(R.string.enemy_sand_worm, R.drawable.enemy_placeholder, 12000, 440, 816)
+    )),
+    DungeonLevel(17, R.string.dungeon_17_name, listOf(
+        EnemyData(R.string.enemy_sand_worm, R.drawable.enemy_placeholder, 1700, 125, 117),
+        EnemyData(R.string.enemy_mummy, R.drawable.enemy_placeholder, 2700, 190, 167),
+        EnemyData(R.string.enemy_anubis_guard, R.drawable.enemy_placeholder, 12500, 450, 817)
+    )),
+    DungeonLevel(18, R.string.dungeon_18_name, listOf(
+        EnemyData(R.string.enemy_anubis_guard, R.drawable.enemy_placeholder, 1800, 130, 118),
+        EnemyData(R.string.enemy_mummy, R.drawable.enemy_placeholder, 2800, 198, 168),
+        EnemyData(R.string.enemy_anubis_guard, R.drawable.enemy_placeholder, 13000, 460, 818)
+    )),
+    DungeonLevel(19, R.string.dungeon_19_name, listOf(
+        EnemyData(R.string.enemy_scorpion, R.drawable.enemy_placeholder, 1900, 135, 119),
+        EnemyData(R.string.enemy_sand_worm, R.drawable.enemy_placeholder, 2900, 206, 169),
+        EnemyData(R.string.enemy_mummy, R.drawable.enemy_placeholder, 13500, 470, 819)
+    )),
+    DungeonLevel(20, R.string.dungeon_20_name, listOf(
+        EnemyData(R.string.enemy_mummy, R.drawable.enemy_placeholder, 2000, 140, 120),
+        EnemyData(R.string.enemy_anubis_guard, R.drawable.enemy_placeholder, 3000, 214, 170),
+        EnemyData(R.string.enemy_boss_pharaoh, R.drawable.enemy_placeholder, 14000, 480, 820)
+    )),
+    DungeonLevel(21, R.string.dungeon_21_name, listOf(
+        EnemyData(R.string.enemy_ice_wolf, R.drawable.enemy_placeholder, 2100, 145, 121),
+        EnemyData(R.string.enemy_ice_wolf, R.drawable.enemy_placeholder, 3100, 222, 171),
+        EnemyData(R.string.enemy_yeti, R.drawable.enemy_placeholder, 14500, 490, 821)
+    )),
+    DungeonLevel(22, R.string.dungeon_22_name, listOf(
+        EnemyData(R.string.enemy_ice_wolf, R.drawable.enemy_placeholder, 2200, 150, 122),
+        EnemyData(R.string.enemy_yeti, R.drawable.enemy_placeholder, 3200, 230, 172),
+        EnemyData(R.string.enemy_frost_giant, R.drawable.enemy_placeholder, 15000, 500, 822)
+    )),
+    DungeonLevel(23, R.string.dungeon_23_name, listOf(
+        EnemyData(R.string.enemy_yeti, R.drawable.enemy_placeholder, 2300, 155, 123),
+        EnemyData(R.string.enemy_yeti, R.drawable.enemy_placeholder, 3300, 238, 173),
+        EnemyData(R.string.enemy_yeti, R.drawable.enemy_placeholder, 15500, 510, 823)
+    )),
+    DungeonLevel(24, R.string.dungeon_24_name, listOf(
+        EnemyData(R.string.enemy_frost_giant, R.drawable.enemy_placeholder, 2400, 160, 124),
+        EnemyData(R.string.enemy_frost_giant, R.drawable.enemy_placeholder, 3400, 246, 174),
+        EnemyData(R.string.enemy_frost_giant, R.drawable.enemy_placeholder, 16000, 520, 824)
+    )),
+    DungeonLevel(25, R.string.dungeon_25_name, listOf(
+        EnemyData(R.string.enemy_ice_wolf, R.drawable.enemy_placeholder, 2500, 165, 125),
+        EnemyData(R.string.enemy_frost_giant, R.drawable.enemy_placeholder, 3500, 254, 175),
+        EnemyData(R.string.enemy_boss_lich_king, R.drawable.enemy_placeholder, 16500, 530, 825)
+    )),
+    DungeonLevel(26, R.string.dungeon_26_name, listOf(
+        EnemyData(R.string.enemy_vampire_bat, R.drawable.enemy_placeholder, 2600, 170, 126),
+        EnemyData(R.string.enemy_vampire_bat, R.drawable.enemy_placeholder, 3600, 262, 176),
+        EnemyData(R.string.enemy_vampire_fledgeling, R.drawable.enemy_placeholder, 17000, 540, 826)
+    )),
+    DungeonLevel(27, R.string.dungeon_27_name, listOf(
+        EnemyData(R.string.enemy_vampire_fledgeling, R.drawable.enemy_placeholder, 2700, 175, 127),
+        EnemyData(R.string.enemy_skeleton, R.drawable.enemy_placeholder, 3700, 270, 177),
+        EnemyData(R.string.enemy_vampire_fledgeling, R.drawable.enemy_placeholder, 17500, 550, 827)
+    )),
+    DungeonLevel(28, R.string.dungeon_28_name, listOf(
+        EnemyData(R.string.enemy_vampire_bat, R.drawable.enemy_placeholder, 2800, 180, 128),
+        EnemyData(R.string.enemy_vampire_fledgeling, R.drawable.enemy_placeholder, 3800, 278, 178),
+        EnemyData(R.string.enemy_boss_dracula, R.drawable.enemy_placeholder, 18000, 560, 828)
+    )),
+    DungeonLevel(29, R.string.dungeon_29_name, listOf(
+        EnemyData(R.string.enemy_void_walker, R.drawable.enemy_placeholder, 2900, 185, 129),
+        EnemyData(R.string.enemy_final_guard_1, R.drawable.enemy_placeholder, 3900, 286, 179),
+        EnemyData(R.string.enemy_final_guard_2, R.drawable.enemy_placeholder, 18500, 570, 829)
+    )),
     DungeonLevel(30, R.string.dungeon_30_name, listOf(
         EnemyData(R.string.enemy_final_guard_1, R.drawable.enemy_placeholder, 5000, 200, 200),
         EnemyData(R.string.enemy_final_guard_2, R.drawable.enemy_placeholder, 6000, 250, 250),
         EnemyData(R.string.enemy_final_guard_3, R.drawable.enemy_placeholder, 7000, 300, 300),
         EnemyData(R.string.enemy_boss_god_of_steps, R.drawable.enemy_placeholder, 50000, 1000, 2000)
-    ))
+    )
+    )
 )

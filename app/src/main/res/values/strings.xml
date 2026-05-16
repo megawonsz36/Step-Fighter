@@ -105,20 +105,41 @@
     <string name="combat_log_location">Lokalizacja: %1$s</string>
     <string name="combat_log_enemy">Przeciwnik: %1$s</string>
 
-    <string name="dungeon_1_name">Mroczne Wejście</string>
-    <string name="dungeon_2_name">Wilczy Jar</string>
-    <string name="dungeon_3_name">Gnijące Bagna</string>
-    <string name="dungeon_4_name">Opuszczona Kopalnia</string>
-    <string name="dungeon_5_name">Wrota Piekieł</string>
-    <string name="dungeon_6_name">Piaski Czasu</string>
-    <string name="dungeon_7_name">Labirynt Minotaura</string>
-    <string name="dungeon_8_name">Zatoka Piratów</string>
-    <string name="dungeon_9_name">Otchłań Pustki</string>
-    <string name="dungeon_10_name">Serce Wulkanu</string>
-    <string name="dungeon_11_name">Lodowy Szczyt</string>
-    <string name="dungeon_12_name">Zamek Draculi</string>
+    <string name="dungeon_1_name">Wilgotny Korytarz</string>
+    <string name="dungeon_2_name">Gniazdo Pająków</string>
+    <string name="dungeon_3_name">Szept Stalaktytów</string>
+    <string name="dungeon_4_name">Zapomniana Kopalnia</string>
+    <string name="dungeon_5_name">Serce Jaskini</string>
+
+    <string name="dungeon_6_name">Wrota Pustyni</string>
+    <string name="dungeon_7_name">Ruchome Piaski</string>
+    <string name="dungeon_8_name">Oaza Cieni</string>
+    <string name="dungeon_9_name">Przeklęte Wykopaliska</string>
+    <string name="dungeon_10_name">Złota Piramida</string>
+
+    <string name="dungeon_11_name">Zamarznięty Przesmyk</string>
+    <string name="dungeon_12_name">Jaskinia Yeti</string>
+    <string name="dungeon_13_name">Kryształowy Lodowiec</string>
+    <string name="dungeon_14_name">Wioska Mrozu</string>
+    <string name="dungeon_15_name">Forteca Wiecznej Zimy</string>
+
+    <string name="dungeon_16_name">Gnijące Moczary</string>
+    <string name="dungeon_17_name">Mglista Przystań</string>
+    <string name="dungeon_18_name">Siedlisko Wiedźm</string>
+    <string name="dungeon_19_name">Zatoka Utopców</string>
+    <string name="dungeon_20_name">Świątynia Bagien</string>
+
+    <string name="dungeon_21_name">Ognista Rozpadlina</string>
+    <string name="dungeon_22_name">Rzeka Lawy</string>
+    <string name="dungeon_23_name">Kuźnia Demonów</string>
+    <string name="dungeon_24_name">Wulkaniczny Szczyt</string>
+    <string name="dungeon_25_name">Tron Ognia</string>
+
+    <string name="dungeon_26_name">Brama Niebios</string>
+    <string name="dungeon_27_name">Labirynt Czasu</string>
+    <string name="dungeon_28_name">Podniebna Cytadela</string>
+    <string name="dungeon_29_name">Krawędź Świata</string>
     <string name="dungeon_30_name">Wieża Bogów</string>
-    <string name="generic_dungeon_name">Nieznane Terytorium</string>
 
     <string name="enemy_goblin_scout">Goblin Zwiadowca</string>
     <string name="enemy_rat">Zmutowany Szczur</string>
