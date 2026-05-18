@@ -10,7 +10,6 @@ android {
 
     signingConfigs {
         create("shared") {
-
             storeFile = file("../debug.keystore")
             storePassword = "android"
             keyAlias = "androiddebugkey"
@@ -57,7 +56,12 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+
+    // To tutaj automatycznie ustawi idealne i zgodne wersje dla Auth i Database
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
