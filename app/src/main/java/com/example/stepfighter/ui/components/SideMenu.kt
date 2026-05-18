@@ -39,7 +39,7 @@ fun SideMenuContent(onClose: () -> Unit) {
                 .fillMaxSize()
                 .padding(24.dp)
         ) {
-            // Nagłówek menu
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -87,11 +87,11 @@ fun SideMenuContent(onClose: () -> Unit) {
                         onClose()
                     }
                 }
-                item {
-                    SideMenuItem(stringResource(R.string.menu_logout), Icons.AutoMirrored.Filled.Logout, color = Color(0xFFB94A4A)) {
-                        onClose()
-                    }
-                }
+//                item {
+//                    SideMenuItem(stringResource(R.string.menu_logout), Icons.AutoMirrored.Filled.Logout, color = Color(0xFFB94A4A)) {
+//                        onClose()
+//                    }
+//                }
             }
 
             Spacer(Modifier.weight(1f))

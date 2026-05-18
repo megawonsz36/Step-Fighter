@@ -27,6 +27,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.stepfighter.BaseGameActivity
 import com.example.stepfighter.R
 import com.example.stepfighter.BuildConfig
 import com.example.stepfighter.ui.dashboard.DashboardActivity
@@ -35,10 +36,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 
-class RegisterActivity : ComponentActivity() {
+class RegisterActivity : BaseGameActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { RegisterScreen() }
+        setContent {
+            HandleNetworkOverlay {
+                RegisterScreen()
+            }
+        }
     }
 }
 

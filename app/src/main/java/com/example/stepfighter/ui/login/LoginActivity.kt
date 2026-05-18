@@ -3,6 +3,7 @@ package com.example.stepfighter.ui.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -27,6 +28,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.stepfighter.BaseGameActivity
 import com.example.stepfighter.R
 import com.example.stepfighter.BuildConfig
 import com.example.stepfighter.ui.dashboard.DashboardActivity
@@ -36,7 +38,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginActivity : ComponentActivity() {
+class LoginActivity : BaseGameActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,20 +46,22 @@ class LoginActivity : ComponentActivity() {
         val prefs = getSharedPreferences("game_prefs", Context.MODE_PRIVATE)
         val rememberMe = prefs.getBoolean("remember_me", false)
 
-
         if (!rememberMe) {
             FirebaseAuth.getInstance().signOut()
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
             GoogleSignIn.getClient(this, gso).signOut()
         }
 
-
         if (authManager.isUserLoggedIn()) {
             startActivity(Intent(this, DashboardActivity::class.java))
             finish()
         }
 
-        setContent { LoginScreen() }
+        setContent {
+            HandleNetworkOverlay {
+                LoginScreen()
+            }
+        }
     }
 }
 
@@ -67,7 +71,6 @@ fun LoginScreen() {
     val authManager = remember { AuthManager() }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-
 
     val prefs = remember { context.getSharedPreferences("game_prefs", Context.MODE_PRIVATE) }
     var rememberMe by remember { mutableStateOf(prefs.getBoolean("remember_me", true)) }
@@ -79,8 +82,9 @@ fun LoginScreen() {
         val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
         try {
             val account = task.getResult(ApiException::class.java)
-            account?.idToken?.let { token ->
+            val token = account?.idToken
 
+            if (token != null) {
                 prefs.edit().putBoolean("remember_me", rememberMe).apply()
 
                 authManager.loginWithGoogle(token) { success, msg, isNewUser ->
@@ -91,11 +95,21 @@ fun LoginScreen() {
                             context.startActivity(Intent(context, DashboardActivity::class.java))
                             (context as? ComponentActivity)?.finish()
                         }
-                    } else Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                    } else {
+                        Log.e("STEP_FIGHTER_AUTH", "Błąd AuthManager: $msg")
+                        Toast.makeText(context, "Auth Error: $msg", Toast.LENGTH_LONG).show()
+                    }
                 }
+            } else {
+                Log.e("STEP_FIGHTER_AUTH", "Błąd: Brak tokenu ID z konta Google")
+                Toast.makeText(context, "Błąd: Brak tokenu ID Google", Toast.LENGTH_LONG).show()
             }
         } catch (e: ApiException) {
-            Toast.makeText(context, "Błąd Google: ${e.statusCode}", Toast.LENGTH_SHORT).show()
+            Log.e("STEP_FIGHTER_AUTH", "Błąd ApiException: Kod statusu = ${e.statusCode}, Wiadomość = ${e.message}")
+            Toast.makeText(context, "Kod błędu Google: ${e.statusCode}", Toast.LENGTH_LONG).show()
+        } catch (e: Exception) {
+            Log.e("STEP_FIGHTER_AUTH", "Inny błąd logowania", e)
+            Toast.makeText(context, "Błąd: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
 
