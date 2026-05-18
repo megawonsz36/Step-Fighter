@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Inventory
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Shield
+import androidx.compose.material.icons.filled.Storefront
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,6 +29,7 @@ import com.example.stepfighter.R
 import com.example.stepfighter.ui.dashboard.DashboardActivity
 import com.example.stepfighter.ui.inventory.InventoryActivity
 import com.example.stepfighter.ui.profile.*
+import com.example.stepfighter.ui.shop.ShopActivity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -83,7 +85,9 @@ fun TopStepFighterBar(onMenuClick: () -> Unit = {}) {
 @Composable
 fun BottomNavigationBar(selectedIndex: Int) {
     val context = LocalContext.current
-    
+    val currentLang = context.getString(R.string.lang_pl)
+    val shopLabel = if (currentLang == "Polski") "Sklep" else "Shop"
+
     Surface(
         color = CardBg,
         modifier = Modifier.fillMaxWidth().height(72.dp),
@@ -104,6 +108,11 @@ fun BottomNavigationBar(selectedIndex: Int) {
                     navigateTo(context as Activity, InventoryActivity::class.java)
                 }
             }
+            NavItem(shopLabel, Icons.Default.Storefront, selectedIndex == 3) {
+                if (selectedIndex != 3) {
+                    navigateTo(context as Activity, ShopActivity::class.java)
+                }
+            }
             NavItem(stringResource(R.string.nav_profile), Icons.Default.Person, selectedIndex == 2) {
                 if (selectedIndex != 2) {
                     navigateTo(context as Activity, ProfileActivity::class.java)
@@ -115,11 +124,9 @@ fun BottomNavigationBar(selectedIndex: Int) {
 
 private fun navigateTo(activity: Activity, targetClass: Class<*>) {
     val intent = Intent(activity, targetClass)
-    // Flagi zapobiegają tworzeniu stosu wielu tych samych aktywności
     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
     activity.startActivity(intent)
-    activity.finish() // Zamykamy poprzednią aktywność, żeby nie wracać do niej przyciskiem wstecz
-    // Wyłączamy animacje systemowe
+    activity.finish()
     @Suppress("DEPRECATION")
     activity.overridePendingTransition(0, 0)
 }
@@ -132,17 +139,17 @@ fun NavItem(label: String, icon: ImageVector, isSelected: Boolean, onClick: () -
         modifier = Modifier
             .fillMaxHeight()
             .clickable { onClick() }
-            .padding(horizontal = 12.dp)
+            .padding(horizontal = 8.dp)
     ) {
         Icon(
-            icon, 
-            contentDescription = null, 
+            icon,
+            contentDescription = null,
             tint = if (isSelected) AccentColor else TextGray,
             modifier = Modifier.size(24.dp)
         )
         Text(
-            label, 
-            color = if (isSelected) AccentColor else TextGray, 
+            label,
+            color = if (isSelected) AccentColor else TextGray,
             fontSize = 11.sp,
             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
         )
