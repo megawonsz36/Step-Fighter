@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Step Fighter</string>
     <string name="level_label">POZIOM %1$d</string>
     <string name="warrior_title">Wojownik Ścieżek</string>
-    <string name="energy_progress_title">POSTĘP ENERGII</string>
+    <string name="energy_progress_title">POSTĘP POZIOMU</string>
     <string name="steps_count">%1$d / %2$d Kroków</string>
-    <string name="energy_missing_desc">Brakuje ci %1$d kroków do pełnego naładowania.\nNastępny poziom.</string>
+    <string name="energy_missing_desc">Brakuje ci %1$d kroków do następnego poziomu.</string>
     <string name="no_enemies">BRAK PRZECIWNIKÓW</string>
     <string name="no_enemies_desc">Poruszaj się aby jakichś namierzyć</string>
     <string name="fight_btn">WALCZ</string>
@@ -225,6 +226,63 @@
     <string name="region_5">ROZDZIAŁ V: WULKANICZNA OTCHŁAŃ</string>
     <string name="region_final">ROZDZIAŁ VI: OSTATECZNE STARCIE</string>
 
+    <string name="title_level_0">BOSO-NOGI START</string>
+    <string name="title_level_2">DEPTACZ TRAWY</string>
+    <string name="title_level_4">Spacerowicz</string>
+    <string name="title_level_6">BIEGACZ MIEJSKI</string>
+    <string name="title_level_8">ZWIADOWCA ŚCIEŻEK</string>
+    <string name="title_level_10">WĘDROWIEC</string>
+    <string name="title_level_12">KREŚLARZ MAP</string>
+    <string name="title_level_14">PIECHUR DOŚWIADCZONY</string>
+    <string name="title_level_16">POKONYWACZ DYSTANSU</string>
+    <string name="title_level_18">POGROMCA ASFALTU</string>
+    <string name="title_level_20">WOJOWNIK ŚCIEŻEK</string>
+    <string name="title_level_22">KROKOBIEG</string>
+    <string name="title_level_24">KURYER TRAKTU</string>
+    <string name="title_level_26">DŁUGODYSTANSOWIEC</string>
+    <string name="title_level_28">SZYBKI MARSZAL</string>
+    <string name="title_level_30">NOCNY TRAKTER</string>
+    <string name="title_level_32">ŻELAZNA PIĘTA</string>
+    <string name="title_level_34">BIEGACZ PRZEŁAJOWY</string>
+    <string name="title_level_36">POSZUKIWACZ HORYZONTU</string>
+    <string name="title_level_38">WĘDROWNY RYCERZ</string>
+    <string name="title_level_40">WETERAN MARSZU</string>
+    <string name="title_level_42">ELITARNY PIECHUR</string>
+    <string name="title_level_44">ZDOBYWCA SZCZYTÓW</string>
+    <string name="title_level_46">KROKOWY ZWID</string>
+    <string name="title_level_48">NIESTRZUDZONY</string>
+    <string name="title_level_50">PANEK TRAKTÓW</string>
+    <string name="title_level_52">MISTRZ TEMPA</string>
+    <string name="title_level_54">LEKKI KROK</string>
+    <string name="title_level_56">WŁÓCZYKIJ PRZEZNACZENIA</string>
+    <string name="title_level_58">ZŁOTY MARSZRUT</string>
+    <string name="title_level_60">MISTRZ STALOWYCH NÓG</string>
+    <string name="title_level_62">PRZEWODNIK CHMUR</string>
+    <string name="title_level_64">SREBRNY TRAKTER</string>
+    <string name="title_level_66">LEWITATOR</string>
+    <string name="title_level_68">PUSTYNNY WĘDROWIEC</string>
+    <string name="title_level_70">ŁOWCA KROKÓW</string>
+    <string name="title_level_72">AS STRATOSFERY</string>
+    <string name="title_level_74">MITYCZNY PIECHUR</string>
+    <string name="title_level_76">WULKANICZNY KROK</string>
+    <string name="title_level_78">DŻENTELMEN DROGI</string>
+    <string name="title_level_80">STRAŻNIK PRZEZNACZENIA</string>
+    <string name="title_level_82">NIEBIESKI BIEGACZ</string>
+    <string name="title_level_84">TLENOWY ATLAS</string>
+    <string name="title_level_86">WŁADCA HORYZONTU</string>
+    <string name="title_level_88">ANASTAZY MARSZU</string>
+    <string name="title_level_90">KROKOWY MONARCHA</string>
+    <string name="title_level_92">TYTAN DYSTANSU</string>
+    <string name="title_level_94">WIDMO TRAKTU</string>
+    <string name="title_level_96">KOSMICZNY PIECHUR</string>
+    <string name="title_level_98">KROKOWY ABSOLUT</string>
+    <string name="title_level_100">BOSKI CHAMPION</string>
 
+    <string name="dungeons_ready_title">LOCHY GOTOWE</string>
+    <string name="dungeons_ready_desc">Wybierz poziom i staw czoła swojemu przeznaczeniu</string>
+    <string name="combat_steps_available">Dostępne punkty bojowe: %1$d</string>
+    <string name="go_into_dungeon_btn">WEJDŹ DO LOCHU</string>
 
+    <string name="energy_next_gain">+1 za: %02d:%02d</string>
+    <string name="energy_max_duration">MAX za: %02dh %02dm</string>
 </resources>
