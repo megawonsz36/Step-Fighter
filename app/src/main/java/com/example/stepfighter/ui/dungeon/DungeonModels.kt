@@ -190,6 +190,5 @@ val dungeonLevelsData = listOf(
         EnemyData(R.string.enemy_final_guard_2, R.drawable.enemy_placeholder, 6000, 250, 250),
         EnemyData(R.string.enemy_final_guard_3, R.drawable.enemy_placeholder, 7000, 300, 300),
         EnemyData(R.string.enemy_boss_god_of_steps, R.drawable.enemy_placeholder, 50000, 1000, 2000)
-    )
-    )
+    ))
 )
