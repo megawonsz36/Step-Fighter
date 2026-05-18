@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Step Fighter</string>
     <string name="level_label">LEVEL %1$d</string>
     <string name="warrior_title">Path Warrior</string>
-    <string name="energy_progress_title">ENERGY PROGRESS</string>
+    <string name="energy_progress_title">Level progress</string>
     <string name="steps_count">%1$d / %2$d Steps</string>
-    <string name="energy_missing_desc">You need %1$d more steps for full charge.\nNext level.</string>
+    <string name="energy_missing_desc">You need %1$d more steps for next level.</string>
     <string name="no_enemies">NO ENEMIES</string>
     <string name="no_enemies_desc">Move around to track some down</string>
     <string name="fight_btn">FIGHT</string>
@@ -225,5 +226,63 @@
     <string name="region_5">CHAPTER V: VOLCANIC ABYSS</string>
     <string name="region_final">CHAPTER VI: FINAL CONFRONTATION</string>
 
+    <string name="title_level_0">BAREFOOT START</string>
+    <string name="title_level_2">GRASS TRAMPLER</string>
+    <string name="title_level_4">STROLLER</string>
+    <string name="title_level_6">CITY RUNNER</string>
+    <string name="title_level_8">PATH SCOUT</string>
+    <string name="title_level_10">WANDERER</string>
+    <string name="title_level_12">MAP MAKER</string>
+    <string name="title_level_14">EXPERIENCED HIKER</string>
+    <string name="title_level_16">DISTANCE CRUSHER</string>
+    <string name="title_level_18">ASPHALT CONQUEROR</string>
+    <string name="title_level_20">PATH WARRIOR</string>
+    <string name="title_level_22">STEP RUNNER</string>
+    <string name="title_level_24">HIGHWAY COURIER</string>
+    <string name="title_level_26">LONG DISTANCE WALKER</string>
+    <string name="title_level_28">SPEED MARSHAL</string>
+    <string name="title_level_30">NIGHT HIKER</string>
+    <string name="title_level_32">IRON HEEL</string>
+    <string name="title_level_34">TRAIL RUNNER</string>
+    <string name="title_level_36">HORIZON SEEKER</string>
+    <string name="title_level_38">KNIGHT ERRANT</string>
+    <string name="title_level_40">MARCH VETERAN</string>
+    <string name="title_level_42">ELITE HIKER</string>
+    <string name="title_level_44">PEAK CONQUEROR</string>
+    <string name="title_level_46">STEPPING PHANTOM</string>
+    <string name="title_level_48">TIRELESS PACKER</string>
+    <string name="title_level_50">LORD OF THE TRAILS</string>
+    <string name="title_level_52">PACE MASTER</string>
+    <string name="title_level_54">LIGHT STEPPER</string>
+    <string name="title_level_56">DESTINY VAGABOND</string>
+    <string name="title_level_58">GOLDEN ROUTE TRAVELLER</string>
+    <string name="title_level_60">STEEL LEGS MASTER</string>
+    <string name="title_level_62">CLOUD GUIDE</string>
+    <string name="title_level_64">SILVER PATHFINDER</string>
+    <string name="title_level_66">LEVITATOR</string>
+    <string name="title_level_68">DESERT STRIDER</string>
+    <string name="title_level_70">STEP HUNTER</string>
+    <string name="title_level_72">STRATOSPHERE ACE</string>
+    <string name="title_level_74">MYTHICAL STRIDER</string>
+    <string name="title_level_76">VOLCANIC STEP</string>
+    <string name="title_level_78">ROAD GENTLEMAN</string>
+    <string name="title_level_80">GUARDIAN OF DESTINY</string>
+    <string name="title_level_82">CELESTIAL RUNNER</string>
+    <string name="title_level_84">OXYGEN ATLAS</string>
+    <string name="title_level_86">RULER OF HORIZONS</string>
+    <string name="title_level_88">MARCH SUPREMO</string>
+    <string name="title_level_90">STEP MONARCH</string>
+    <string name="title_level_92">DISTANCE TITAN</string>
+    <string name="title_level_94">HIGHWAY SPECTRE</string>
+    <string name="title_level_96">COSMIC STRIDER</string>
+    <string name="title_level_98">STEP ABSOLUTE</string>
+    <string name="title_level_100">DIVINE CHAMPION</string>
 
+    <string name="dungeons_ready_title">DUNGEONS READY</string>
+    <string name="dungeons_ready_desc">Select a level and face your destiny</string>
+    <string name="combat_steps_available">Available combat points: %1$d</string>
+    <string name="go_into_dungeon_btn">GO INTO THE DUNGEON</string>
+
+    <string name="energy_next_gain">+1 in: %02d:%02d</string>
+    <string name="energy_max_duration">MAX in: %02dh %02dm</string>
 </resources>
